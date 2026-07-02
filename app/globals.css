@@ -1,0 +1,159 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-body), sans-serif;
+  --font-display: var(--font-display), serif;
+
+  --color-background: #f6efe6;
+  --color-paper: #fbf6ef;
+  --color-surface-warm: #f2e5d3;
+  --color-panel: #fbf7f1;
+  --color-foreground: #201914;
+  --color-ink: #201914;
+  --color-muted-foreground: #6f6258;
+  --color-border: #d8c8b7;
+  --color-border-subtle: rgba(118, 92, 72, 0.16);
+  --color-brand: #8e4d3d;
+  --color-brand-strong: #753f31;
+  --color-brand-foreground: #fff8f2;
+  --color-accent: #e4bc78;
+  --color-accent-foreground: #5b381e;
+  --color-sage: #8a9a76;
+  --color-sage-foreground: #f8f3eb;
+  --color-secondary: #efe2d3;
+  --color-secondary-foreground: #3d3129;
+
+  --color-cover-sand-foreground: #523625;
+  --color-cover-clay-foreground: #fff8f0;
+  --color-cover-olive-foreground: #fbf6ef;
+  --color-cover-ink-foreground: #f5efe6;
+
+  --radius-panel: 1.2rem;
+  --radius-card: 1.6rem;
+  --radius-shell: 2rem;
+
+  --shadow-card: 0 16px 36px rgba(58, 36, 22, 0.08);
+  --shadow-soft: 0 24px 56px rgba(83, 53, 34, 0.14);
+  --shadow-elevated: 0 30px 70px rgba(72, 44, 28, 0.18);
+
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+
+  --max-width-container: 80rem;
+}
+
+@utility bg-hero-gradient {
+  background-image:
+    linear-gradient(180deg, rgba(252, 246, 238, 0.96) 0%, rgba(246, 239, 230, 0.985) 40%, rgba(239, 228, 211, 0.94) 100%),
+    radial-gradient(circle at 18% 18%, rgba(228, 188, 120, 0.22), transparent 30%),
+    radial-gradient(circle at 82% 12%, rgba(138, 154, 118, 0.19), transparent 28%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0 2px, transparent 2px 18px);
+}
+
+@utility hero-sheen {
+  background-image: radial-gradient(circle at top, rgba(250, 240, 225, 0.95), transparent 70%);
+}
+
+@utility paper-grid {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
+    repeating-linear-gradient(0deg, rgba(93, 72, 56, 0.03) 0 1px, transparent 1px 16px),
+    repeating-linear-gradient(90deg, rgba(93, 72, 56, 0.026) 0 1px, transparent 1px 16px);
+}
+
+@utility paper-noise {
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.24) 0 1px, transparent 1px),
+    radial-gradient(circle at 78% 34%, rgba(91, 56, 30, 0.06) 0 1px, transparent 1px),
+    radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px);
+  background-size: 18px 18px, 24px 24px, 22px 22px;
+}
+
+@utility ambient-orb {
+  filter: blur(14px);
+  opacity: 0.72;
+}
+
+@utility book-cover-sand {
+  background-image: linear-gradient(180deg, #f0dcc0 0%, #d8b98d 100%);
+  color: var(--color-cover-sand-foreground);
+}
+
+@utility book-cover-clay {
+  background-image: linear-gradient(180deg, #d8ad8b 0%, #a96849 100%);
+  color: var(--color-cover-clay-foreground);
+}
+
+@utility book-cover-olive {
+  background-image: linear-gradient(180deg, #93a07b 0%, #66704d 100%);
+  color: var(--color-cover-olive-foreground);
+}
+
+@utility book-cover-ink {
+  background-image: linear-gradient(180deg, #4a4a50 0%, #22252c 100%);
+  color: var(--color-cover-ink-foreground);
+}
+
+@utility lined-note {
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05)),
+    repeating-linear-gradient(180deg, transparent 0 11px, rgba(111, 98, 88, 0.1) 11px 12px);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    background-color: var(--color-background);
+  }
+
+  body {
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top, rgba(255, 249, 241, 0.9), transparent 32%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+      var(--color-background);
+    color: var(--color-foreground);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.38;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.3) 0 1px, transparent 1px),
+      radial-gradient(circle at 75% 35%, rgba(92, 69, 52, 0.05) 0 1px, transparent 1px),
+      radial-gradient(circle at 45% 75%, rgba(255, 255, 255, 0.24) 0 1px, transparent 1px);
+    background-size: 24px 24px, 28px 28px, 22px 22px;
+  }
+
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-brand) 18%, white);
+    color: var(--color-foreground);
+  }
+
+  :focus-visible {
+    outline-color: var(--color-brand);
+  }
+
+  a,
+  button,
+  input,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,75 @@
+import {
+  Blocks,
+  BookOpen,
+  BriefcaseBusiness,
+  GraduationCap,
+  LibraryBig,
+  NotebookPen,
+  PencilRuler,
+  Shapes,
+  type LucideIcon,
+} from "lucide-react";
+
+import type { BookCategorySlug } from "@/types/book";
+
+type ProductVisual = {
+  icon: LucideIcon;
+  coverClassName: string;
+  accentClassName: string;
+  shortLabel: string;
+};
+
+export const productVisuals: Record<BookCategorySlug, ProductVisual> = {
+  textbooks: {
+    icon: BookOpen,
+    coverClassName: "book-cover-sand",
+    accentClassName: "bg-accent text-accent-foreground",
+    shortLabel: "Учебники",
+  },
+  methodology: {
+    icon: LibraryBig,
+    coverClassName: "book-cover-clay",
+    accentClassName: "bg-brand text-brand-foreground",
+    shortLabel: "Методика",
+  },
+  preschool: {
+    icon: GraduationCap,
+    coverClassName: "book-cover-olive",
+    accentClassName: "bg-sage text-sage-foreground",
+    shortLabel: "Для ДОУ",
+  },
+  games: {
+    icon: Shapes,
+    coverClassName: "book-cover-clay",
+    accentClassName: "bg-accent text-accent-foreground",
+    shortLabel: "Игры",
+  },
+  stationery: {
+    icon: PencilRuler,
+    coverClassName: "book-cover-sand",
+    accentClassName: "bg-secondary text-secondary-foreground",
+    shortLabel: "Канцелярия",
+  },
+  "visual-aids": {
+    icon: NotebookPen,
+    coverClassName: "book-cover-olive",
+    accentClassName: "bg-sage text-sage-foreground",
+    shortLabel: "Пособия",
+  },
+  "business-books": {
+    icon: BriefcaseBusiness,
+    coverClassName: "book-cover-ink",
+    accentClassName: "bg-brand text-brand-foreground",
+    shortLabel: "Бизнес",
+  },
+  "puzzles-models": {
+    icon: Blocks,
+    coverClassName: "book-cover-ink",
+    accentClassName: "bg-accent text-accent-foreground",
+    shortLabel: "3D-модели",
+  },
+};
+
+export function getProductVisual(category: BookCategorySlug) {
+  return productVisuals[category];
+}
