@@ -1,12 +1,11 @@
 import {
-  Blocks,
+  BookMarked,
   BookOpen,
-  BriefcaseBusiness,
+  CalendarDays,
   GraduationCap,
   LibraryBig,
   NotebookPen,
-  PencilRuler,
-  Shapes,
+  ScrollText,
   type LucideIcon,
 } from "lucide-react";
 
@@ -24,7 +23,7 @@ export const productVisuals: Record<BookCategorySlug, ProductVisual> = {
     icon: BookOpen,
     coverClassName: "book-cover-sand",
     accentClassName: "bg-accent text-accent-foreground",
-    shortLabel: "Учебники",
+    shortLabel: "Учебная книга",
   },
   methodology: {
     icon: LibraryBig,
@@ -32,41 +31,35 @@ export const productVisuals: Record<BookCategorySlug, ProductVisual> = {
     accentClassName: "bg-brand text-brand-foreground",
     shortLabel: "Методика",
   },
-  preschool: {
-    icon: GraduationCap,
-    coverClassName: "book-cover-olive",
-    accentClassName: "bg-sage text-sage-foreground",
-    shortLabel: "Для ДОУ",
-  },
-  games: {
-    icon: Shapes,
-    coverClassName: "book-cover-clay",
-    accentClassName: "bg-accent text-accent-foreground",
-    shortLabel: "Игры",
-  },
-  stationery: {
-    icon: PencilRuler,
-    coverClassName: "book-cover-sand",
-    accentClassName: "bg-secondary text-secondary-foreground",
-    shortLabel: "Канцелярия",
-  },
   "visual-aids": {
     icon: NotebookPen,
     coverClassName: "book-cover-olive",
     accentClassName: "bg-sage text-sage-foreground",
     shortLabel: "Пособия",
   },
-  "business-books": {
-    icon: BriefcaseBusiness,
+  "children-books": {
+    icon: GraduationCap,
+    coverClassName: "book-cover-olive",
+    accentClassName: "bg-sage text-sage-foreground",
+    shortLabel: "Детские книги",
+  },
+  "extracurricular-reading": {
+    icon: BookMarked,
+    coverClassName: "book-cover-sand",
+    accentClassName: "bg-accent text-accent-foreground",
+    shortLabel: "Чтение",
+  },
+  "used-books": {
+    icon: ScrollText,
     coverClassName: "book-cover-ink",
     accentClassName: "bg-brand text-brand-foreground",
-    shortLabel: "Бизнес",
+    shortLabel: "Букинистика",
   },
-  "puzzles-models": {
-    icon: Blocks,
-    coverClassName: "book-cover-ink",
+  events: {
+    icon: CalendarDays,
+    coverClassName: "book-cover-clay",
     accentClassName: "bg-accent text-accent-foreground",
-    shortLabel: "3D-модели",
+    shortLabel: "Мероприятия",
   },
 };
 

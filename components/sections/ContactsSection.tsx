@@ -1,4 +1,4 @@
-import { Compass, ExternalLink, MapPinned, Phone } from "lucide-react";
+import { Compass, ExternalLink, MapPinned, Phone, Truck } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -16,7 +16,7 @@ export function ContactsSection() {
             <SectionTitle
               eyebrow="Контакты"
               title="Позвоните перед визитом, чтобы уточнить наличие нужного товара."
-              description="Финальный блок с адресом, телефоном и картой, чтобы магазин было легко найти."
+              description="Финальный блок с адресом, телефоном, картой и короткой подсказкой по доставке."
               className="max-w-xl"
             />
 
@@ -59,6 +59,20 @@ export function ContactsSection() {
                     <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Перед визитом</p>
                     <p className="mt-2 text-sm leading-7 text-muted-foreground">
                       Позвоните перед визитом, чтобы уточнить наличие нужного товара.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 rounded-panel border border-dashed border-border/80 bg-panel/90 p-5">
+                <div className="flex items-start gap-3">
+                  <span className="mt-1 flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                    <Truck className="size-4" />
+                  </span>
+                  <div>
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Доставка</p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                      Можно уточнить доставку по городу, по краю и по стране, а также удобный способ получения заказа.
                     </p>
                   </div>
                 </div>

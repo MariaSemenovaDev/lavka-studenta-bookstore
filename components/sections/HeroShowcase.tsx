@@ -1,6 +1,6 @@
-import Link from "next/link";
 import Image from "next/image";
-import { NotebookPen, Phone, Puzzle, StickyNote } from "lucide-react";
+import Link from "next/link";
+import { CalendarDays, NotebookPen, Phone, StickyNote } from "lucide-react";
 
 import { ProductMockCover } from "@/components/catalog/ProductMockCover";
 import { Button } from "@/components/ui/Button";
@@ -16,9 +16,9 @@ export function HeroShowcase() {
 
       <div className="relative grid gap-4 rounded-[2rem] border border-border/60 bg-panel/60 p-4 shadow-card sm:grid-cols-[minmax(0,1.08fr)_minmax(12rem,0.92fr)] sm:p-5">
         <Link
-            href="/catalog"
-            aria-label="Открыть каталог учебников"
-            className="group transition duration-300 hover:-translate-y-1 hover:shadow-elevated focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+          href="/catalog?category=textbooks"
+          aria-label="Открыть каталог учебной книги"
+          className="group transition duration-300 hover:-translate-y-1 hover:shadow-elevated focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
         >
           <Card className="relative h-full min-h-[28rem] overflow-hidden rounded-shell bg-panel/94 p-0 shadow-elevated">
             <ProductMockCover
@@ -32,33 +32,33 @@ export function HeroShowcase() {
 
         <div className="grid gap-4 sm:grid-rows-[auto_auto_1fr]">
           <Link
-            href="/catalog"
-            aria-label="Открыть каталог развивающих игр"
+            href="/events"
+            aria-label="Открыть раздел мероприятий"
             className="transition duration-300 hover:-translate-y-1 hover:shadow-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             <Card className="relative overflow-hidden bg-panel/94 p-3 sm:p-4">
               <Image
-                src="/covers/games-photo.jpg"
+                src="/covers/book-club-photo.jpg"
                 alt=""
                 fill
                 sizes="(max-width: 640px) 45vw, 12rem"
                 className="object-cover opacity-38 mix-blend-multiply"
                 aria-hidden="true"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-black/6 to-white/12" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-black/8 to-white/10" />
               <div className="relative mb-3 flex items-center justify-between">
                 <span className="flex size-9 items-center justify-center rounded-full bg-accent text-accent-foreground">
-                  <Puzzle className="size-4" />
+                  <CalendarDays className="size-4" />
                 </span>
               </div>
-              <h3 className="relative font-display text-2xl leading-none text-foreground">Игры</h3>
-              <p className="relative mt-2 text-sm leading-5 text-foreground/82">Счёт, логика, чтение</p>
+              <h3 className="relative font-display text-2xl leading-none text-foreground">Книжный клуб</h3>
+              <p className="relative mt-2 text-sm leading-5 text-foreground/82">Встречи и мероприятия</p>
             </Card>
           </Link>
 
           <Link
-            href="/catalog"
-            aria-label="Открыть каталог пособий"
+            href="/catalog?category=visual-aids"
+            aria-label="Открыть каталог наглядных пособий"
             className="transition duration-300 hover:-translate-y-1 hover:shadow-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             <Card className="relative overflow-hidden bg-panel/94 p-3 sm:p-4">

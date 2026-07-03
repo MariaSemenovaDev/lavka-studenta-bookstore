@@ -1,12 +1,11 @@
 export type BookCategorySlug =
   | "textbooks"
   | "methodology"
-  | "preschool"
-  | "games"
-  | "stationery"
   | "visual-aids"
-  | "business-books"
-  | "puzzles-models";
+  | "children-books"
+  | "extracurricular-reading"
+  | "used-books"
+  | "events";
 
 export type Book = {
   id: string;
