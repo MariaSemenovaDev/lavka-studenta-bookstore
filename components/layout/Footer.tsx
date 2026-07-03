@@ -11,9 +11,10 @@ export function Footer() {
       <Container className="grid gap-10 py-10 lg:grid-cols-[1.15fr_0.85fr_1fr_1fr]">
         <div className="max-w-md">
           <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">{STORE_NAME}</p>
-          <h2 className="mt-3 font-display text-3xl text-foreground">Аккуратный каталог книг и товаров для учебы в одном месте.</h2>
+          <h2 className="mt-3 font-display text-3xl text-foreground">Подборки книг и товаров для учёбы в одном месте.</h2>
           <p className="mt-4 text-sm leading-7 text-muted-foreground">
-            На сайте можно спокойно посмотреть ассортимент, а перед визитом в магазин уточнить наличие по телефону.
+            На сайте можно спокойно посмотреть ассортимент и рекомендации, а перед визитом в магазин уточнить наличие,
+            доставку и удобный способ получения заказа по телефону.
           </p>
         </div>
 

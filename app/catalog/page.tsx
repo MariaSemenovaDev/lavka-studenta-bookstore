@@ -5,8 +5,8 @@ import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { Container } from "@/components/ui/Container";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { categories } from "@/data/categories";
 import { books } from "@/data/books";
+import { categories } from "@/data/categories";
 import { CATALOG_METADATA } from "@/lib/constants";
 import type { BookCategorySlug } from "@/types/book";
 
@@ -43,9 +43,9 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
       <main id="content" className="py-14 sm:py-16 lg:py-20">
         <Container>
           <SectionTitle
-            eyebrow="Каталог"
-            title="Товары для учебы, занятий и развития."
-            description="Ищите по названию, категории и описанию. В каталоге собраны учебные материалы, развивающие игры, наглядные пособия, канцелярия и модели."
+            eyebrow="Рекомендуем"
+            title="Товары для учёбы, чтения и занятий."
+            description="Ищите по названию, категории и описанию. В recommend собраны учебная книга, методическая литература, внеклассное чтение, книги для детей, букинистические издания и наглядные пособия."
           />
           <CatalogClient books={books} initialCategory={initialCategory} />
         </Container>

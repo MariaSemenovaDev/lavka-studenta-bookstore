@@ -1,4 +1,4 @@
-import { BookOpen, MapPin, PackageCheck, Shapes } from "lucide-react";
+import { BookOpen, MapPin, NotebookPen, PackageCheck } from "lucide-react";
 
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
@@ -15,9 +15,9 @@ const trustItems = [
     icon: BookOpen,
   },
   {
-    title: "Развивающие игры и наглядные материалы",
-    description: "Игры, модели и пособия для практики и занятий дома.",
-    icon: Shapes,
+    title: "Книги для детей и наглядные материалы",
+    description: "Чтение для дома, школы и материалы для занятий с детьми.",
+    icon: NotebookPen,
   },
   {
     title: "Наличие можно уточнить по телефону",

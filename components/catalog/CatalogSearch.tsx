@@ -19,7 +19,7 @@ export function CatalogSearch({ value, onChange, describedBy }: CatalogSearchPro
         id="catalog-search"
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        placeholder="Например: математика, пазл, пособие"
+        placeholder="Например: математика, чтение, пособие"
         className="pl-10"
         aria-describedby={describedBy}
       />

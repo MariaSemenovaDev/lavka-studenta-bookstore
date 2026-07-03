@@ -16,21 +16,21 @@ export function FeaturedBooksSection() {
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <Reveal className="flex-1">
           <SectionTitle
-            eyebrow="Подборка"
-            title="Несколько позиций, с которых удобно начать знакомство с каталогом."
-            description="Карточки можно листать мышкой или свайпом, чтобы быстро посмотреть подборку товаров на главной."
+            eyebrow="Рекомендуем"
+            title="Несколько позиций, с которых удобно начать знакомство с ассортиментом."
+            description="Карточки можно листать мышкой или свайпом, чтобы быстро посмотреть подборку на главной."
           />
         </Reveal>
         <Reveal delay={0.08}>
           <Button href="/catalog" variant="secondary">
-            Весь каталог
+            Все рекомендации
             <ArrowRight className="size-4" />
           </Button>
         </Reveal>
       </div>
 
       <Reveal delay={0.12} className="mt-10">
-        <DraggableCarousel ariaLabel="Популярные товары" className="select-none">
+        <DraggableCarousel ariaLabel="Рекомендуемые товары" className="select-none">
           {featuredBooks.map((book) => (
             <BookCard key={book.id} book={book} />
           ))}

@@ -18,8 +18,7 @@ export default function OpenGraphImage() {
           height: "100%",
           display: "flex",
           padding: "56px",
-          background:
-            "linear-gradient(180deg, #fbf6ef 0%, #f2e5d3 100%)",
+          background: "linear-gradient(180deg, #fbf6ef 0%, #f2e5d3 100%)",
           color: "#201914",
           position: "relative",
           overflow: "hidden",
@@ -77,7 +76,7 @@ export default function OpenGraphImage() {
           </div>
 
           <div style={{ display: "flex", gap: "16px" }}>
-            {["Книги", "Учебники", "Развивающие игры"].map((item) => (
+            {["Книги", "Учебники", "Букинистика"].map((item) => (
               <div
                 key={item}
                 style={{

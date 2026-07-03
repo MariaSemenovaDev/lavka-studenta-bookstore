@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Blocks, BookOpen, BriefcaseBusiness, GraduationCap, LibraryBig, NotebookPen, PencilRuler, Phone, Shapes } from "lucide-react";
+import { ArrowRight, BookMarked, BookOpen, CalendarDays, GraduationCap, LibraryBig, NotebookPen, Phone, ScrollText } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -23,41 +23,35 @@ const categoryVisuals = {
     ribbon: "bg-brand/18",
     label: "Для педагогов",
   },
-  preschool: {
-    icon: GraduationCap,
-    accent: "bg-sage text-sage-foreground",
-    ribbon: "bg-sage/20",
-    label: "Раннее развитие",
-  },
-  games: {
-    icon: Shapes,
-    accent: "bg-accent text-accent-foreground",
-    ribbon: "bg-accent/22",
-    label: "Для практики",
-  },
-  stationery: {
-    icon: PencilRuler,
-    accent: "bg-secondary text-secondary-foreground",
-    ribbon: "bg-secondary/80",
-    label: "На каждый день",
-  },
   "visual-aids": {
     icon: NotebookPen,
     accent: "bg-sage text-sage-foreground",
-    ribbon: "bg-sage/18",
+    ribbon: "bg-sage/20",
     label: "Для объяснений",
   },
-  "business-books": {
-    icon: BriefcaseBusiness,
-    accent: "bg-brand text-brand-foreground",
-    ribbon: "bg-brand/18",
-    label: "Саморазвитие",
+  "children-books": {
+    icon: GraduationCap,
+    accent: "bg-sage text-sage-foreground",
+    ribbon: "bg-sage/18",
+    label: "Для детей",
   },
-  "puzzles-models": {
-    icon: Blocks,
+  "extracurricular-reading": {
+    icon: BookMarked,
     accent: "bg-accent text-accent-foreground",
     ribbon: "bg-accent/22",
-    label: "Сборные наборы",
+    label: "Школьные списки",
+  },
+  "used-books": {
+    icon: ScrollText,
+    accent: "bg-brand text-brand-foreground",
+    ribbon: "bg-brand/18",
+    label: "С историей",
+  },
+  events: {
+    icon: CalendarDays,
+    accent: "bg-accent text-accent-foreground",
+    ribbon: "bg-accent/22",
+    label: "Книжный клуб",
   },
 } as const;
 
@@ -69,14 +63,14 @@ export function CategoriesSection() {
           <SectionTitle
             eyebrow="Ассортимент"
             title="Всё для учёбы, занятий и развития"
-            description="Учебники, методическая литература, развивающие игры, канцелярия и наглядные пособия — в одном магазине в Новороссийске."
+            description="Учебная книга, методическая литература, наглядные пособия, книги для детей, внеклассное чтение и букинистические издания — в одном магазине в Новороссийске."
           />
         </Reveal>
 
         <Reveal delay={0.08}>
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Button href="/catalog">
-              Смотреть каталог
+              Смотреть рекомендации
               <ArrowRight className="size-4" />
             </Button>
             <Button href={PRIMARY_TEL} variant="secondary">
@@ -96,7 +90,7 @@ export function CategoriesSection() {
             return (
               <Link
                 key={category.slug}
-                href={`/catalog?category=${category.slug}`}
+                href={category.slug === "events" ? "/events" : `/catalog?category=${category.slug}`}
                 className="block h-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
               >
                 <Card className="group relative flex h-full min-h-[248px] flex-col justify-between overflow-hidden bg-panel/84 px-5 pb-5 pt-8">
