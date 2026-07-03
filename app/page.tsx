@@ -10,7 +10,7 @@ import { ContactsSection } from "@/components/sections/ContactsSection";
 import { CmsRecommendationsSection } from "@/components/sections/CmsRecommendationsSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustSection } from "@/components/sections/TrustSection";
-import { getFeaturedAnnouncements, getFeaturedEvents, getFeaturedRecommendations } from "@/sanity/fetchers";
+import { getFeaturedAnnouncements, getRecommendations, getUpcomingEvents } from "@/sanity/fetchers";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -18,10 +18,10 @@ export const revalidate = 0;
 export default async function HomePage() {
   await connection();
 
-  const [featuredEvents, featuredAnnouncements, featuredRecommendations] = await Promise.all([
-    getFeaturedEvents(),
+  const [upcomingEvents, featuredAnnouncements, recommendations] = await Promise.all([
+    getUpcomingEvents(),
     getFeaturedAnnouncements(),
-    getFeaturedRecommendations(),
+    getRecommendations(),
   ]);
 
   return (
@@ -30,8 +30,8 @@ export default async function HomePage() {
       <main id="content">
         <HeroSection />
         <TrustSection />
-        <CmsRecommendationsSection recommendations={featuredRecommendations} />
-        <BookClubSection events={featuredEvents} announcements={featuredAnnouncements} />
+        <CmsRecommendationsSection recommendations={recommendations} />
+        <BookClubSection events={upcomingEvents} announcements={featuredAnnouncements} />
         <BookSurpriseSection />
         <AudienceSection />
         <AboutSection />
