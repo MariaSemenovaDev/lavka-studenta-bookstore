@@ -9,9 +9,11 @@ type ProductMockCoverProps = {
   category: BookCategorySlug;
   title?: string;
   subtitle?: string;
+  badgeLabel?: string;
   compact?: boolean;
   centered?: boolean;
   showTitle?: boolean;
+  showShortLabel?: boolean;
   className?: string;
 };
 
@@ -19,9 +21,11 @@ export function ProductMockCover({
   category,
   title,
   subtitle,
+  badgeLabel,
   compact = false,
   centered = false,
   showTitle = true,
+  showShortLabel = true,
   className,
 }: ProductMockCoverProps) {
   const visual = getProductVisual(category);
@@ -51,24 +55,32 @@ export function ProductMockCover({
       <div className="relative flex h-full flex-col justify-between p-5">
         <div className="flex items-start justify-between gap-3">
           <span className={cn("inline-flex items-center rounded-full px-3 py-1 text-[0.68rem] font-semibold uppercase tracking-[0.18em]", visual.accentClassName)}>
-            {getCategoryName(category)}
+            {badgeLabel ?? getCategoryName(category)}
           </span>
           <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/25 bg-white/12">
             <Icon className="size-4" />
           </span>
         </div>
 
-        <div className={cn("space-y-3", compact && "space-y-2", centered && "mx-auto text-center")}>
+        <div
+          className={cn(
+            "space-y-3 rounded-[1.15rem] border border-white/22 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.42)_0%,rgba(255,255,255,0.24)_48%,rgba(255,255,255,0.08)_100%)] px-4 py-3 shadow-[0_10px_28px_rgba(255,255,255,0.08)] backdrop-blur-[4px]",
+            compact && "space-y-2 px-3 py-2.5",
+            centered && "mx-auto text-center",
+          )}
+        >
           {showTitle ? (
             <div>
-              <p className={cn("text-[0.68rem] font-semibold uppercase tracking-[0.22em] opacity-72", compact && "text-[0.62rem]")}>
-                {visual.shortLabel}
-              </p>
-              <h3 className={cn("mt-2 font-display text-[1.45rem] leading-tight", compact && "text-xl")}>{title}</h3>
+              {showShortLabel ? (
+                <p className={cn("text-[0.68rem] font-semibold uppercase tracking-[0.22em] opacity-72", compact && "text-[0.62rem]")}>
+                  {visual.shortLabel}
+                </p>
+              ) : null}
+              <h3 className={cn("mt-2 font-display text-[1.45rem] leading-tight text-foreground", compact && "text-xl")}>{title}</h3>
             </div>
           ) : null}
           {subtitle ? (
-            <p className={cn("max-w-[18ch] text-sm leading-6 opacity-78", compact && "text-xs leading-5", centered && "mx-auto")}>
+            <p className={cn("max-w-[18ch] text-sm leading-6 text-foreground/80", compact && "text-xs leading-5", centered && "mx-auto")}>
               {subtitle}
             </p>
           ) : null}

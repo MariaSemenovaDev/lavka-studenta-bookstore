@@ -70,8 +70,8 @@
 }
 
 @utility ambient-orb {
-  filter: blur(14px);
-  opacity: 0.72;
+  filter: blur(10px);
+  opacity: 0.9;
 }
 
 @utility book-cover-sand {

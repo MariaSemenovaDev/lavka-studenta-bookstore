@@ -28,7 +28,7 @@ export function BookSurpriseSection() {
                   <Phone className="size-4" />
                   Позвонить
                 </Button>
-                <Button href="/catalog" variant="secondary" size="lg" className="justify-center">
+                <Button href="/recommendations" variant="secondary" size="lg" className="justify-center">
                   Смотреть рекомендации
                 </Button>
               </div>

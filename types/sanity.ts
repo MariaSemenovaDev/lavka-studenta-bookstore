@@ -37,6 +37,7 @@ export type SanityRecommendation = {
   shortDescription: string;
   description?: PortableTextBlock[];
   coverImage?: SanityImageAsset;
+  gallery?: SanityImageAsset[];
   ageGroup?: string;
   isFeatured?: boolean;
   publishedAt?: string;

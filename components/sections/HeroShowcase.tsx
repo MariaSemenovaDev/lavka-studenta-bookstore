@@ -11,20 +11,23 @@ export function HeroShowcase() {
   return (
     <div className="relative mx-auto w-full max-w-[34rem]">
       <div className="paper-grid absolute inset-4 rounded-[2rem] border border-border-subtle opacity-80" />
-      <div className="ambient-orb pointer-events-none absolute -left-4 top-10 size-28 rounded-full bg-accent/20" />
-      <div className="ambient-orb pointer-events-none absolute right-0 top-6 size-32 rounded-full bg-sage/18" />
+      <div className="ambient-orb pointer-events-none absolute -left-4 top-10 size-28 rounded-full bg-accent/34" />
+      <div className="ambient-orb pointer-events-none absolute right-0 top-6 size-32 rounded-full bg-sage/28" />
 
       <div className="relative grid gap-4 rounded-[2rem] border border-border/60 bg-panel/60 p-4 shadow-card sm:grid-cols-[minmax(0,1.08fr)_minmax(12rem,0.92fr)] sm:p-5">
         <Link
-          href="/catalog?category=textbooks"
-          aria-label="Открыть каталог учебной книги"
+          href="/recommendations"
+          aria-label="Открыть рекомендации магазина"
           className="group transition duration-300 hover:-translate-y-1 hover:shadow-elevated focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
         >
           <Card className="relative h-full min-h-[28rem] overflow-hidden rounded-shell bg-panel/94 p-0 shadow-elevated">
             <ProductMockCover
               category="textbooks"
+              title="Наши рекомендации"
+              subtitle="Книги и подборки, на которые стоит обратить внимание."
+              badgeLabel="Рекомендации"
               centered
-              showTitle={false}
+              showShortLabel={false}
               className="absolute inset-0 h-full w-full rounded-none shadow-none transition duration-300 group-hover:scale-[1.03]"
             />
           </Card>
@@ -32,8 +35,8 @@ export function HeroShowcase() {
 
         <div className="grid gap-4 sm:grid-rows-[auto_auto_1fr]">
           <Link
-            href="/events"
-            aria-label="Открыть раздел мероприятий"
+            href="/book-club"
+            aria-label="Открыть раздел книжного клуба"
             className="transition duration-300 hover:-translate-y-1 hover:shadow-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             <Card className="relative overflow-hidden bg-panel/94 p-3 sm:p-4">
@@ -51,35 +54,33 @@ export function HeroShowcase() {
                   <CalendarDays className="size-4" />
                 </span>
               </div>
-              <h3 className="relative font-display text-2xl leading-none text-foreground">Книжный клуб</h3>
-              <p className="relative mt-2 text-sm leading-5 text-foreground/82">Встречи и мероприятия</p>
+              <div className="relative rounded-[1rem] border border-white/22 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.42)_0%,rgba(255,255,255,0.22)_52%,rgba(255,255,255,0.08)_100%)] px-3 py-3 backdrop-blur-[4px]">
+                <h3 className="font-display text-2xl leading-none text-foreground">Книжный клуб</h3>
+                <p className="mt-2 text-sm leading-5 text-foreground/80">Встречи и мероприятия</p>
+              </div>
             </Card>
           </Link>
 
-          <Link
-            href="/catalog?category=visual-aids"
-            aria-label="Открыть каталог наглядных пособий"
-            className="transition duration-300 hover:-translate-y-1 hover:shadow-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-          >
-            <Card className="relative overflow-hidden bg-panel/94 p-3 sm:p-4">
-              <Image
-                src="/covers/visual-aids-photo.jpg"
-                alt=""
-                fill
-                sizes="(max-width: 640px) 45vw, 12rem"
-                className="object-cover opacity-34 mix-blend-multiply"
-                aria-hidden="true"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-black/6 to-white/14" />
-              <div className="relative mb-3 flex items-center justify-between">
-                <span className="flex size-9 items-center justify-center rounded-full bg-sage text-sage-foreground">
-                  <NotebookPen className="size-4" />
-                </span>
-              </div>
-              <h3 className="relative font-display text-2xl leading-none text-foreground">Пособия</h3>
-              <p className="relative mt-2 text-sm leading-5 text-foreground/82">Для педагогов и родителей</p>
-            </Card>
-          </Link>
+          <Card className="relative overflow-hidden bg-panel/94 p-3 sm:p-4">
+            <Image
+              src="/covers/visual-aids-photo.jpg"
+              alt=""
+              fill
+              sizes="(max-width: 640px) 45vw, 12rem"
+              className="object-cover opacity-34 mix-blend-multiply"
+              aria-hidden="true"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-black/6 to-white/14" />
+            <div className="relative mb-3 flex items-center justify-between">
+              <span className="flex size-9 items-center justify-center rounded-full bg-sage text-sage-foreground">
+                <NotebookPen className="size-4" />
+              </span>
+            </div>
+            <div className="relative rounded-[1rem] border border-white/22 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.42)_0%,rgba(255,255,255,0.22)_52%,rgba(255,255,255,0.08)_100%)] px-3 py-3 backdrop-blur-[4px]">
+              <h3 className="font-display text-2xl leading-none text-foreground">Пособия</h3>
+              <p className="mt-2 text-sm leading-5 text-foreground/80">Для педагогов и родителей</p>
+            </div>
+          </Card>
 
           <Card className="overflow-hidden border-brand/15 bg-brand px-4 pb-4 pt-7 text-brand-foreground shadow-soft">
             <div className="mb-3 flex items-center gap-3">

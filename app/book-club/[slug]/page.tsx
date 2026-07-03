@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, MapPin, Phone } from "lucide-react";
 
@@ -63,13 +64,13 @@ export default async function EventDetailPage({ params }: EventDetailPageProps) 
       <Header />
       <main id="content" className="py-14 sm:py-16 lg:py-20">
         <Container>
-          <a
+          <Link
             href="/book-club"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             <ArrowLeft className="size-4" />
             Назад к книжному клубу
-          </a>
+          </Link>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
             <Card className="overflow-hidden bg-panel/90 p-0">

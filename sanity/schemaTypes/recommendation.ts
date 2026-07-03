@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const recommendationType = defineType({
   name: "recommendation",
-  title: "Recommendation",
+  title: "Рекомендация",
   type: "document",
   fields: [
     defineField({
@@ -53,9 +53,15 @@ export const recommendationType = defineType({
     }),
     defineField({
       name: "coverImage",
-      title: "Cover image",
+      title: "Обложка",
       type: "image",
       options: { hotspot: true },
+    }),
+    defineField({
+      name: "gallery",
+      title: "Галерея изображений",
+      type: "array",
+      of: [{ type: "image", options: { hotspot: true } }],
     }),
     defineField({
       name: "ageGroup",

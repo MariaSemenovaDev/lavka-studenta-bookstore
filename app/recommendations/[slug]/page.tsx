@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, Phone } from "lucide-react";
 
@@ -68,13 +69,13 @@ export default async function RecommendationDetailPage({ params }: Recommendatio
       <Header />
       <main id="content" className="py-14 sm:py-16 lg:py-20">
         <Container>
-          <a
+          <Link
             href="/recommendations"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             <ArrowLeft className="size-4" />
             Назад к рекомендациям
-          </a>
+          </Link>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
             <Card className="overflow-hidden bg-panel/90 p-0">
@@ -118,6 +119,24 @@ export default async function RecommendationDetailPage({ params }: Recommendatio
             <Card className="mt-10 space-y-5 bg-panel/82">
               <PortableTextContent value={recommendation.description} />
             </Card>
+          ) : null}
+
+          {recommendation.gallery?.length ? (
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {recommendation.gallery.map((image, index) => (
+                <Card key={`${recommendation._id}-gallery-${index}`} className="overflow-hidden bg-panel/90 p-0">
+                  <div className="relative aspect-[4/3] bg-secondary">
+                    <CmsImage
+                      image={image}
+                      alt={`${recommendation.title} — изображение ${index + 1}`}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover"
+                    />
+                  </div>
+                </Card>
+              ))}
+            </div>
           ) : null}
         </Container>
       </main>

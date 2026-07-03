@@ -43,9 +43,9 @@ export default async function CatalogPage({ searchParams }: CatalogPageProps) {
       <main id="content" className="py-14 sm:py-16 lg:py-20">
         <Container>
           <SectionTitle
-            eyebrow="Рекомендуем"
+            eyebrow="Каталог"
             title="Товары для учёбы, чтения и занятий."
-            description="Ищите по названию, категории и описанию. В recommend собраны учебная книга, методическая литература, внеклассное чтение, книги для детей, букинистические издания и наглядные пособия."
+            description="Ищите по названию, категории и описанию. В каталоге собраны учебная книга, методическая литература, внеклассное чтение, книги для детей, букинистические издания и наглядные пособия."
           />
           <CatalogClient books={books} initialCategory={initialCategory} />
         </Container>
