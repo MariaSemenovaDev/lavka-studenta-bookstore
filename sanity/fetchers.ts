@@ -3,7 +3,6 @@ import type { QueryParams } from "next-sanity";
 
 import {
   eventBySlugQuery,
-  featuredAnnouncementsQuery,
   featuredEventsQuery,
   featuredRecommendationsQuery,
   pastEventsQuery,
@@ -12,7 +11,7 @@ import {
   upcomingEventsQuery,
 } from "@/sanity/queries";
 import { sanityClient } from "@/sanity/client";
-import type { SanityAnnouncement, SanityEvent, SanityRecommendation } from "@/types/sanity";
+import type { SanityEvent, SanityRecommendation } from "@/types/sanity";
 
 async function safeFetch<T>(query: string, params?: QueryParams): Promise<T | null> {
   if (!sanityClient) {
@@ -53,8 +52,4 @@ export async function getRecommendations() {
 
 export async function getRecommendationBySlug(slug: string) {
   return await safeFetch<SanityRecommendation>(recommendationBySlugQuery, { slug });
-}
-
-export async function getFeaturedAnnouncements() {
-  return (await safeFetch<SanityAnnouncement[]>(featuredAnnouncementsQuery)) ?? [];
 }

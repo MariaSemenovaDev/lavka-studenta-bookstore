@@ -1,20 +1,11 @@
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
-import { AnnouncementCard } from "@/components/cms/AnnouncementCard";
-import { EventCard } from "@/components/cms/EventCard";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
-import { DraggableCarousel } from "@/components/ui/DraggableCarousel";
 import { ImageGalleryCarousel } from "@/components/ui/ImageGalleryCarousel";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import type { SanityAnnouncement, SanityEvent } from "@/types/sanity";
-
-type BookClubSectionProps = {
-  events: SanityEvent[];
-  announcements: SanityAnnouncement[];
-};
 
 const clubPhotos = [
   "https://sun9-86.userapi.com/s/v1/ig2/FlGeZgSwYEnOqHK0Z6LnkHHj9kq7jqD5x1usDTDO9bJ6gbbwuvtt7t8xBwM714SlvWayENoLiYcJWiKlOek1fTRJ.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1040x780&from=bu&cs=1040x0",
@@ -25,7 +16,7 @@ const clubPhotos = [
   "https://sun9-44.userapi.com/s/v1/ig2/yp3gcYCcZBDoJ0fxvG7PEIm9qBQwuMxhYxSWShr7nB9oJeE5vO0_upDZ3zxryTinkRC8ke3UZe19GISsq-jHQeu0.jpg?quality=95&as=32x69,48x104,72x156,108x234,160x347,240x520,360x780,480x1040,540x1170,591x1280&from=bu&cs=591x0",
 ];
 
-export function BookClubSection({ events, announcements }: BookClubSectionProps) {
+export function BookClubSection() {
   return (
     <Section id="book-club" className="bg-panel/35">
       <div className="relative overflow-hidden rounded-shell border border-border/70 bg-panel/72 px-6 py-10 shadow-elevated sm:px-8 lg:px-12 lg:py-12">
@@ -67,22 +58,6 @@ export function BookClubSection({ events, announcements }: BookClubSectionProps)
           <div className="mt-8">
             <ImageGalleryCarousel images={clubPhotos} altPrefix="Фотография книжного клуба" />
           </div>
-
-          {events.length ? (
-            <DraggableCarousel ariaLabel="Ближайшие мероприятия книжного клуба" className="mt-10">
-              {events.slice(0, 4).map((event) => (
-                <EventCard key={event._id} event={event} />
-              ))}
-            </DraggableCarousel>
-          ) : null}
-
-          {announcements.length ? (
-            <div className="mt-8 grid gap-4 lg:grid-cols-3">
-              {announcements.slice(0, 3).map((announcement) => (
-                <AnnouncementCard key={announcement._id} announcement={announcement} />
-              ))}
-            </div>
-          ) : null}
         </div>
       </div>
     </Section>

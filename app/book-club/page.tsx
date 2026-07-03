@@ -2,7 +2,6 @@ import { connection } from "next/server";
 import Image from "next/image";
 import type { Metadata } from "next";
 
-import { AnnouncementCard } from "@/components/cms/AnnouncementCard";
 import { EventCard } from "@/components/cms/EventCard";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
@@ -11,7 +10,7 @@ import { Container } from "@/components/ui/Container";
 import { DraggableCarousel } from "@/components/ui/DraggableCarousel";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { BOOK_CLUB_METADATA } from "@/lib/constants";
-import { getFeaturedAnnouncements, getUpcomingEvents } from "@/sanity/fetchers";
+import { getUpcomingEvents } from "@/sanity/fetchers";
 
 export const metadata: Metadata = {
   title: BOOK_CLUB_METADATA.title,
@@ -41,7 +40,7 @@ const clubPhotos = [
 export default async function BookClubPage() {
   await connection();
 
-  const [events, announcements] = await Promise.all([getUpcomingEvents(), getFeaturedAnnouncements()]);
+  const events = await getUpcomingEvents();
 
   return (
     <div className="min-h-screen bg-background">
@@ -87,15 +86,7 @@ export default async function BookClubPage() {
             </div>
           ) : null}
 
-          {announcements.length ? (
-            <div className="mt-8 grid gap-4 lg:grid-cols-3">
-              {announcements.map((announcement) => (
-                <AnnouncementCard key={announcement._id} announcement={announcement} />
-              ))}
-            </div>
-          ) : null}
-
-          {!events.length && !announcements.length ? (
+          {!events.length ? (
             <Card className="mt-10 bg-panel/82">
               <h2 className="font-display text-3xl text-foreground">Скоро здесь появятся ближайшие мероприятия клуба.</h2>
             </Card>

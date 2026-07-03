@@ -22,7 +22,10 @@ export function HeroSection() {
       <Container className="relative grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
         <Reveal className="max-w-2xl">
           <h1 className="mt-3 max-w-[9ch] font-display text-5xl leading-[0.9] text-foreground sm:text-6xl lg:text-[5.2rem]">
-            <TypewriterTitle text={STORE_NAME} />
+            <span className="lg:hidden">{STORE_NAME}</span>
+            <span className="hidden lg:inline-block">
+              <TypewriterTitle text={STORE_NAME} />
+            </span>
           </h1>
           <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
             Книги, учебники, методическая литература, наглядные пособия и букинистические издания в Новороссийске.

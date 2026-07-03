@@ -16,6 +16,7 @@ export function ContactsSection() {
             <SectionTitle
               eyebrow="Контакты"
               title="Позвоните перед визитом, чтобы уточнить наличие нужного товара."
+              description="Финальный блок с адресом, телефоном, картой и короткой подсказкой по доставке."
               className="max-w-xl"
             />
 

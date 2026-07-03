@@ -152,17 +152,3 @@ export const recommendationBySlugQuery = groq`
   }
 `;
 
-export const featuredAnnouncementsQuery = groq`
-  *[_type == "bookClubAnnouncement" && isFeatured == true && ${publishedFilter}]
-  | order(coalesce(publishedAt, _createdAt) desc)[0...4]{
-    _id,
-    title,
-    "slug": slug.current,
-    publishedAt,
-    shortDescription,
-    body,
-    coverImage,
-    isFeatured,
-    type
-  }
-`;
