@@ -74,14 +74,7 @@ export function BookClubSection({ events, announcements }: BookClubSectionProps)
                 <EventCard key={event._id} event={event} />
               ))}
             </DraggableCarousel>
-          ) : (
-            <Card className="mt-10 bg-panel/82">
-              <h3 className="font-display text-3xl text-foreground">Скоро здесь появятся новые встречи книжного клуба.</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                После подключения Sanity заказчик сможет сам публиковать анонсы, даты, фотографии и обновления мероприятий.
-              </p>
-            </Card>
-          )}
+          ) : null}
 
           {announcements.length ? (
             <div className="mt-8 grid gap-4 lg:grid-cols-3">

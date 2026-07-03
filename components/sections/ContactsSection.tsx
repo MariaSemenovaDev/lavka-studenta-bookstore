@@ -5,7 +5,7 @@ import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { FULL_ADDRESS, MAP_EMBED_URL, MAP_LINK, PRIMARY_PHONE, PRIMARY_TEL, STORE_NAME } from "@/lib/constants";
+import { FULL_ADDRESS, MAP_EMBED_URL, MAP_LINK, PRIMARY_PHONE, PRIMARY_TEL, STORE_NAME, WORKING_HOURS } from "@/lib/constants";
 
 export function ContactsSection() {
   return (
@@ -16,7 +16,6 @@ export function ContactsSection() {
             <SectionTitle
               eyebrow="Контакты"
               title="Позвоните перед визитом, чтобы уточнить наличие нужного товара."
-              description="Финальный блок с адресом, телефоном, картой и короткой подсказкой по доставке."
               className="max-w-xl"
             />
 
@@ -48,32 +47,14 @@ export function ContactsSection() {
                     </a>
                   </div>
                 </div>
-              </div>
 
-              <div className="mt-6 rounded-panel border border-dashed border-border/80 bg-panel/90 p-5">
                 <div className="flex items-start gap-3">
-                  <span className="mt-1 flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                  <span className="mt-1 flex size-10 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
                     <Compass className="size-4" />
                   </span>
                   <div>
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Перед визитом</p>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                      Позвоните перед визитом, чтобы уточнить наличие нужного товара.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-4 rounded-panel border border-dashed border-border/80 bg-panel/90 p-5">
-                <div className="flex items-start gap-3">
-                  <span className="mt-1 flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
-                    <Truck className="size-4" />
-                  </span>
-                  <div>
-                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Доставка</p>
-                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
-                      Можно уточнить доставку по городу, по краю и по стране, а также удобный способ получения заказа.
-                    </p>
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Часы работы</p>
+                    <p className="mt-1 text-sm leading-7 text-foreground">{WORKING_HOURS}</p>
                   </div>
                 </div>
               </div>
@@ -97,16 +78,32 @@ export function ContactsSection() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <div className="rounded-card border border-border/70 bg-background/92 px-3 pb-3 pt-7 shadow-card sm:px-4 sm:pb-4 sm:pt-8">
-              <div className="paper-grid overflow-hidden rounded-[1.35rem] border border-border/60 bg-panel">
-                <iframe
-                  title="Карта: Книжная Лавка Студента"
-                  src={MAP_EMBED_URL}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="h-[320px] w-full md:h-[360px] xl:h-[400px]"
-                />
+            <div className="space-y-4">
+              <div className="rounded-card border border-border/70 bg-background/92 px-3 pb-3 pt-7 shadow-card sm:px-4 sm:pb-4 sm:pt-8">
+                <div className="paper-grid overflow-hidden rounded-[1.35rem] border border-border/60 bg-panel">
+                  <iframe
+                    title="Карта: Книжная Лавка Студента"
+                    src={MAP_EMBED_URL}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="h-[320px] w-full md:h-[360px] xl:h-[400px]"
+                  />
+                </div>
               </div>
+
+              <Card className="bg-background/92">
+                <div className="flex items-start gap-3">
+                  <span className="mt-1 flex size-10 shrink-0 items-center justify-center rounded-full bg-secondary text-secondary-foreground">
+                    <Truck className="size-4" />
+                  </span>
+                  <div>
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Доставка</p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                      Можно уточнить доставку по городу, по краю и по стране, а также удобный способ получения заказа.
+                    </p>
+                  </div>
+                </div>
+              </Card>
             </div>
           </Reveal>
         </div>

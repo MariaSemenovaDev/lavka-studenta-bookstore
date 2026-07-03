@@ -16,7 +16,7 @@ export function Section({
   children,
 }: SectionProps) {
   return (
-    <Component id={id} className={cn("py-14 sm:py-18 lg:py-22", className)}>
+    <Component id={id} className={cn("py-10 sm:py-12 lg:py-16", className)}>
       <div className={cn("mx-auto w-full max-w-container px-4 sm:px-6 lg:px-8", containerClassName)}>
         {children}
       </div>

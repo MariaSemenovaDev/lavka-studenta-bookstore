@@ -20,20 +20,16 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
     loop: true,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
+  const canScroll = images.length > 1;
 
   const updateState = useCallback(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
-    setCanScrollPrev(images.length > 1);
-    setCanScrollNext(images.length > 1);
-  }, [emblaApi, images.length]);
+  }, [emblaApi]);
 
   useEffect(() => {
     if (!emblaApi) return;
 
-    updateState();
     emblaApi.on("select", updateState);
     emblaApi.on("reInit", updateState);
 
@@ -61,7 +57,7 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
         <button
           type="button"
           onClick={() => emblaApi?.scrollPrev()}
-          disabled={!canScrollPrev}
+          disabled={!canScroll}
           aria-label="Предыдущее фото"
           className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/90 text-foreground transition hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
         >
@@ -70,7 +66,7 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
         <button
           type="button"
           onClick={() => emblaApi?.scrollNext()}
-          disabled={!canScrollNext}
+          disabled={!canScroll}
           aria-label="Следующее фото"
           className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/90 text-foreground transition hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
         >

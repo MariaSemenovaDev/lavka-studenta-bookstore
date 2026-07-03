@@ -1,25 +1,32 @@
-import { Gift, MessageSquareText, Phone, Truck } from "lucide-react";
+import { CheckCircle2, MessageSquareText, Phone } from "lucide-react";
 
-import { PhotoPlaceholderCarousel } from "@/components/ui/PhotoPlaceholderCarousel";
 import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 import { PRIMARY_TEL } from "@/lib/constants";
 
+const steps = [
+  "Расскажите, для кого нужна книга.",
+  "Мы подберём несколько уместных вариантов.",
+  "Вы уточните наличие и удобный способ получения.",
+];
+
 export function BookSurpriseSection() {
   return (
-    <Section id="surprise">
+    <Section id="help">
       <Reveal>
-        <div className="relative overflow-hidden rounded-shell border border-border/70 bg-panel px-6 pb-6 pt-10 shadow-elevated sm:px-8 lg:px-12 lg:pb-10 lg:pt-12">
-          <div className="paper-grid absolute inset-0 opacity-65" />
-          <div className="ambient-orb pointer-events-none absolute -right-10 top-6 size-44 rounded-full bg-accent/20" />
-          <div className="relative grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-start">
+        <div className="relative overflow-hidden rounded-shell border border-border/70 bg-panel px-6 py-8 shadow-elevated sm:px-8 lg:px-10">
+          <div className="paper-grid absolute inset-0 opacity-60" />
+          <div className="ambient-orb pointer-events-none absolute -right-10 top-6 size-40 rounded-full bg-accent/16" />
+
+          <div className="relative grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
             <div>
               <SectionTitle
-                eyebrow="Буксюрприз"
-                title="Подберём книги в формате буксюрприза или поможем собрать заказ."
-                description="Если не хотите долго выбирать, можно обратиться за подборкой. Подскажем по наличию, доставке и тому, как удобнее получить заказ."
+                eyebrow="Помощь с выбором"
+                title="Поможем подобрать книгу"
+                description="Если не хочется долго искать самостоятельно, можно позвонить в магазин. Подскажем по книгам, внеклассному чтению, букинистике и тому, как удобнее получить заказ."
                 className="max-w-xl"
               />
 
@@ -32,41 +39,30 @@ export function BookSurpriseSection() {
                   Смотреть рекомендации
                 </Button>
               </div>
-
-              <PhotoPlaceholderCarousel
-                ariaLabel="Фотографии буксюрприза"
-                labels={["Буксюрприз 1", "Буксюрприз 2", "Буксюрприз 3"]}
-              />
             </div>
 
-            <div className="lined-note rounded-card border border-border/70 bg-paper/90 p-5 shadow-card sm:p-6">
+            <Card className="lined-note bg-paper/92">
               <div className="flex items-center gap-3">
                 <span className="flex size-11 items-center justify-center rounded-full bg-brand text-brand-foreground">
                   <MessageSquareText className="size-5" />
                 </span>
                 <div>
-                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Подсказка</p>
-                  <h3 className="mt-1 font-display text-2xl text-foreground">Что можем подсказать</h3>
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Как это работает</p>
+                  <h3 className="mt-1 font-display text-2xl text-foreground">Три простых шага</h3>
                 </div>
               </div>
-              <ul className="mt-5 space-y-3 text-sm leading-7 text-muted-foreground">
-                <li className="rounded-panel border border-border/70 bg-panel/80 px-4 py-3">
-                  <span className="inline-flex items-center gap-2 font-medium text-foreground">
-                    <Gift className="size-4 text-brand" />
-                    Подберём книги в формате буксюрприза под возраст, интерес или повод.
-                  </span>
-                </li>
-                <li className="rounded-panel border border-border/70 bg-panel/80 px-4 py-3">
-                  <span className="inline-flex items-center gap-2 font-medium text-foreground">
-                    <Truck className="size-4 text-brand" />
-                    Скажем, как лучше заказать и как удобнее получить заказ: самовывоз, доставка по городу, краю или по стране.
-                  </span>
-                </li>
-                <li className="rounded-panel border border-border/70 bg-panel/80 px-4 py-3">
-                  Подскажем по наличию, мероприятиям и срокам, если нужен конкретный набор книг или подарочная подборка.
-                </li>
-              </ul>
-            </div>
+
+              <ol className="mt-5 space-y-3">
+                {steps.map((step) => (
+                  <li key={step} className="rounded-panel border border-border/70 bg-panel/82 px-4 py-3 text-sm leading-7 text-muted-foreground">
+                    <span className="inline-flex items-start gap-2">
+                      <CheckCircle2 className="mt-1 size-4 shrink-0 text-brand" />
+                      <span>{step}</span>
+                    </span>
+                  </li>
+                ))}
+              </ol>
+            </Card>
           </div>
         </div>
       </Reveal>

@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Phone } from "lucide-react";
 
-import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { NAV_ITEMS, PRIMARY_PHONE, PRIMARY_TEL, STORE_NAME } from "@/lib/constants";
+import { NAV_ITEMS, STORE_NAME } from "@/lib/constants";
 
 export function Header() {
   return (
@@ -27,33 +25,18 @@ export function Header() {
               </span>
             </span>
           </Link>
-
-          <a
-            href={PRIMARY_TEL}
-            aria-label={`Позвонить: ${PRIMARY_PHONE}`}
-            className="flex size-11 shrink-0 items-center justify-center rounded-full border border-border bg-panel text-foreground transition hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand md:hidden"
-          >
-            <Phone className="size-4" />
-          </a>
-
           <nav aria-label="Основная навигация" className="hidden items-center gap-6 lg:flex">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground transition hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
+                className="group relative pb-2 text-sm text-muted-foreground transition-[color,letter-spacing] duration-300 ease-out hover:text-foreground hover:tracking-[0.12em] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
               >
                 {item.label}
+                <span className="absolute inset-x-[-0.35rem] bottom-0 h-px origin-center scale-x-0 bg-brand transition-transform duration-300 ease-out group-hover:scale-x-100" aria-hidden="true" />
               </Link>
             ))}
           </nav>
-
-          <div className="hidden md:block">
-            <Button href={PRIMARY_TEL} size="md">
-              <Phone className="size-4" />
-              Позвонить
-            </Button>
-          </div>
         </div>
 
         <nav aria-label="Навигация по разделам" className="mt-4 flex flex-wrap gap-2 border-t border-border/60 pt-4 lg:hidden">
@@ -61,9 +44,10 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full border border-border bg-panel px-4 py-2 text-sm text-foreground transition hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+              className="group relative rounded-full border border-border bg-panel px-4 py-2 text-sm text-foreground transition-[color,letter-spacing,border-color,background-color] duration-300 ease-out hover:border-brand/40 hover:bg-accent hover:tracking-[0.08em] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
             >
               {item.label}
+              <span className="absolute inset-x-4 bottom-1.5 h-px origin-center scale-x-0 bg-brand transition-transform duration-300 ease-out group-hover:scale-x-100" aria-hidden="true" />
             </Link>
           ))}
         </nav>
