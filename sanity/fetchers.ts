@@ -1,3 +1,4 @@
+import { unstable_noStore as noStore } from "next/cache";
 import type { QueryParams } from "next-sanity";
 
 import {
@@ -19,6 +20,7 @@ async function safeFetch<T>(query: string, params?: QueryParams): Promise<T | nu
   }
 
   try {
+    noStore();
     return await sanityClient.fetch<T>(query, params ?? {});
   } catch {
     return null;

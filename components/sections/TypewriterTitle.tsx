@@ -100,11 +100,11 @@ export function TypewriterTitle({
   }, [deleteSpeedMs, holdMs, speedMs, startDelayMs, text]);
 
   return (
-    <span aria-label={text} className={cn("relative inline-grid", className)}>
-      <span aria-hidden="true" className="invisible">
+    <span aria-label={text} className={cn("relative inline-block w-full align-top", className)}>
+      <span aria-hidden="true" className="pointer-events-none block select-none opacity-0">
         {text}
       </span>
-      <span aria-hidden="true" className="absolute inset-0">
+      <span aria-hidden="true" className="pointer-events-none absolute inset-0 block whitespace-normal">
         {displayedText}
         <span
           className={cn(

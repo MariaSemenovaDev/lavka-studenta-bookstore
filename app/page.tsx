@@ -1,3 +1,5 @@
+import { connection } from "next/server";
+
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { AboutSection } from "@/components/sections/AboutSection";
@@ -10,7 +12,12 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { getFeaturedAnnouncements, getFeaturedEvents, getFeaturedRecommendations } from "@/sanity/fetchers";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function HomePage() {
+  await connection();
+
   const [featuredEvents, featuredAnnouncements, featuredRecommendations] = await Promise.all([
     getFeaturedEvents(),
     getFeaturedAnnouncements(),

@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import Image from "next/image";
 import type { Metadata } from "next";
 
@@ -25,6 +26,9 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const clubPhotos = [
   "https://sun9-86.userapi.com/s/v1/ig2/FlGeZgSwYEnOqHK0Z6LnkHHj9kq7jqD5x1usDTDO9bJ6gbbwuvtt7t8xBwM714SlvWayENoLiYcJWiKlOek1fTRJ.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1040x780&from=bu&cs=1040x0",
   "https://sun9-26.userapi.com/s/v1/ig2/WU-KzmTchpu51AKxSZ0mi8oKxk7zXfwwrvBU5L1xvS9e-0h7q2J9L0ZjquTkmvwpviGcr6EnWfCk6_T0WuHPpnEa.jpg?quality=95&as=32x69,48x104,72x156,108x234,160x347,240x520,360x780,480x1040,540x1170,591x1280&from=bu&cs=591x0",
@@ -35,6 +39,8 @@ const clubPhotos = [
 ];
 
 export default async function BookClubPage() {
+  await connection();
+
   const [events, announcements] = await Promise.all([getUpcomingEvents(), getFeaturedAnnouncements()]);
 
   return (
@@ -50,8 +56,8 @@ export default async function BookClubPage() {
 
           <Card className="mt-8 bg-panel/84">
             <p className="max-w-4xl text-base leading-8 text-muted-foreground">
-              Книжный клуб в лавке — это спокойные встречи для тех, кто любит читать, обсуждать книги и делиться впечатлениями. Здесь можно
-              следить за ближайшими событиями, смотреть фотографии прошедших встреч и узнавать о новых темах, подборках и книжных поводах.
+              Книжный клуб в лавке — это спокойные встречи для тех, кто любит читать, обсуждать книги и делиться впечатлениями. Здесь можно следить
+              за ближайшими событиями, смотреть фотографии прошедших встреч и узнавать о новых темах, подборках и книжных поводах.
             </p>
           </Card>
 
@@ -82,9 +88,6 @@ export default async function BookClubPage() {
           ) : (
             <Card className="mt-10 bg-panel/82">
               <h2 className="font-display text-3xl text-foreground">Скоро здесь появятся новые встречи книжного клуба.</h2>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                Когда заказчик добавит первые мероприятия в Sanity Studio, они автоматически появятся на этой странице.
-              </p>
             </Card>
           )}
 

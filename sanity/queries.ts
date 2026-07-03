@@ -3,7 +3,7 @@ import { groq } from "next-sanity";
 const publishedFilter = 'defined(slug.current) && coalesce(publishedAt, _createdAt) <= now()';
 
 export const featuredEventsQuery = groq`
-  *[_type == "event" && isFeatured == true && status == "upcoming" && ${publishedFilter}]
+  *[_type == "event" && isFeatured == true && status == "upcoming" && eventDate >= now() && ${publishedFilter}]
   | order(eventDate asc)[0...4]{
     _id,
     title,
@@ -26,7 +26,7 @@ export const featuredEventsQuery = groq`
 `;
 
 export const upcomingEventsQuery = groq`
-  *[_type == "event" && status == "upcoming" && ${publishedFilter}]
+  *[_type == "event" && status == "upcoming" && eventDate >= now() && ${publishedFilter}]
   | order(eventDate asc){
     _id,
     title,
@@ -49,7 +49,7 @@ export const upcomingEventsQuery = groq`
 `;
 
 export const pastEventsQuery = groq`
-  *[_type == "event" && status == "past" && ${publishedFilter}]
+  *[_type == "event" && (status == "past" || eventDate < now()) && ${publishedFilter}]
   | order(eventDate desc){
     _id,
     title,

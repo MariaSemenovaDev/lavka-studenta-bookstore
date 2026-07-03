@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import type { Metadata } from "next";
 
 import { RecommendationCard } from "@/components/cms/RecommendationCard";
@@ -22,7 +23,12 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export default async function RecommendationsPage() {
+  await connection();
+
   const recommendations = await getRecommendations();
 
   return (
@@ -45,9 +51,6 @@ export default async function RecommendationsPage() {
           ) : (
             <Card className="mt-10 bg-panel/82">
               <h2 className="font-display text-3xl text-foreground">Скоро здесь появятся рекомендации магазина.</h2>
-              <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                После публикации документов в Sanity сюда будут автоматически попадать новые подборки и карточки книг.
-              </p>
             </Card>
           )}
         </Container>

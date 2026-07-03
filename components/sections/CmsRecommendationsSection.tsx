@@ -35,9 +35,6 @@ export function CmsRecommendationsSection({ recommendations }: CmsRecommendation
       ) : (
         <Card className="mt-10 bg-panel/82">
           <h3 className="font-display text-3xl text-foreground">Скоро здесь появятся рекомендации магазина.</h3>
-          <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            Публикации из Sanity будут автоматически подхватываться на главную страницу, когда заказчик начнет их заполнять.
-          </p>
         </Card>
       )}
     </Section>

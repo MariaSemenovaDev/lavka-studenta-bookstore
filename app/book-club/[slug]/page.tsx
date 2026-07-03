@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -16,6 +17,9 @@ import { getEventBySlug } from "@/sanity/fetchers";
 type EventDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 function formatEventDate(date: string) {
   return new Intl.DateTimeFormat("ru-RU", {
@@ -52,6 +56,8 @@ export async function generateMetadata({ params }: EventDetailPageProps): Promis
 }
 
 export default async function EventDetailPage({ params }: EventDetailPageProps) {
+  await connection();
+
   const { slug } = await params;
   const event = await getEventBySlug(slug);
 

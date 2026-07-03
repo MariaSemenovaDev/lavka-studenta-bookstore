@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -18,6 +19,9 @@ import type { BookCategorySlug } from "@/types/book";
 type RecommendationDetailPageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 const categoryMap: Record<string, BookCategorySlug> = {
   "Учебная книга": "textbooks",
@@ -55,6 +59,8 @@ export async function generateMetadata({ params }: RecommendationDetailPageProps
 }
 
 export default async function RecommendationDetailPage({ params }: RecommendationDetailPageProps) {
+  await connection();
+
   const { slug } = await params;
   const recommendation = await getRecommendationBySlug(slug);
 
