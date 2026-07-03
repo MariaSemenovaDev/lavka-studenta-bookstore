@@ -15,7 +15,7 @@ const highlightItems = [
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden border-b border-border/60 bg-hero-gradient py-14 sm:py-18 lg:py-24">
+    <section className="relative overflow-hidden border-b border-border/60 bg-hero-gradient py-10 sm:py-14 lg:py-20">
       <div className="hero-sheen pointer-events-none absolute inset-x-0 top-0 h-56" />
       <div className="ambient-orb pointer-events-none absolute -left-10 top-20 size-44 rounded-full bg-accent/25" />
       <div className="ambient-orb pointer-events-none absolute right-8 top-10 size-56 rounded-full bg-sage/20" />
