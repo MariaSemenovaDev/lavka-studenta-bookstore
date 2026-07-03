@@ -42,26 +42,26 @@ export function BookClubSection({ events, announcements }: BookClubSectionProps)
 
         <div className="relative">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-        <SectionTitle
-          eyebrow="Книжный клуб"
-          title="Книжный клуб и мероприятия"
-          description="Встречи, анонсы и события магазина — следите за ближайшими датами."
-        />
-        <Button href="/book-club" variant="secondary">
-          Смотреть мероприятия
-          <ArrowRight className="size-4" />
-        </Button>
+            <SectionTitle
+              eyebrow="Книжный клуб"
+              title="Книжный клуб и мероприятия"
+              description="Встречи и события магазина — следите за ближайшими датами."
+            />
+            <Button href="/book-club" variant="secondary">
+              Смотреть мероприятия
+              <ArrowRight className="size-4" />
+            </Button>
           </div>
 
           <Card className="mt-8 bg-panel/84">
-        <p className="max-w-4xl text-base leading-8 text-muted-foreground">
-          Книжный клуб в лавке — это уютные встречи для тех, кто любит читать не в одиночку. Мы собираемся, чтобы обсуждать книги,
-          делиться впечатлениями, спорить о героях, находить новые смыслы и просто проводить время среди своих.
-          <br />
-          <br />
-          Здесь можно следить за ближайшими встречами, смотреть фотографии прошедших событий и узнавать о новых темах, подборках и книжных
-          поводах. Приходите — будем читать, говорить и влюбляться в книги заново.
-        </p>
+            <p className="max-w-4xl text-base leading-8 text-muted-foreground">
+              Книжный клуб в лавке — это уютные встречи для тех, кто любит читать не в одиночку. Мы собираемся, чтобы обсуждать книги, делиться
+              впечатлениями, спорить о героях, находить новые смыслы и просто проводить время среди своих.
+              <br />
+              <br />
+              Здесь можно следить за ближайшими встречами, смотреть фотографии прошедших событий и узнавать о новых темах, подборках и книжных
+              поводах. Приходите — будем читать, говорить и влюбляться в книги заново.
+            </p>
           </Card>
 
           <div className="mt-8">

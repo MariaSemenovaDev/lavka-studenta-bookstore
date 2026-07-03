@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const bookClubAnnouncementType = defineType({
   name: "bookClubAnnouncement",
-  title: "Анонс книжного клуба",
+  title: "Мероприятие книжного клуба",
   type: "document",
   fields: [
     defineField({

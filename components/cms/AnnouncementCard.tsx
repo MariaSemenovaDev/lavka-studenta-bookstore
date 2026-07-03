@@ -3,9 +3,9 @@ import { Card } from "@/components/ui/Card";
 import type { SanityAnnouncement } from "@/types/sanity";
 
 const labels: Record<NonNullable<SanityAnnouncement["type"]>, string> = {
-  announcement: "Анонс",
-  news: "Новость",
-  recap: "Итоги встречи",
+  announcement: "Мероприятие клуба",
+  news: "Новость клуба",
+  recap: "Прошедшая встреча",
 };
 
 type AnnouncementCardProps = {

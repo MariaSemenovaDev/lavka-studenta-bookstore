@@ -50,8 +50,8 @@ export default async function BookClubPage() {
         <Container>
           <SectionTitle
             eyebrow="Книжный клуб"
-            title="Книжный клуб"
-            description="Анонсы, встречи и события Книжной Лавки Студента."
+            title="Мероприятия книжного клуба"
+            description="Встречи, события и публикации Книжной Лавки Студента."
           />
 
           <Card className="mt-8 bg-panel/84">
@@ -85,30 +85,21 @@ export default async function BookClubPage() {
                 <EventCard key={event._id} event={event} />
               ))}
             </div>
-          ) : (
-            <Card className="mt-10 bg-panel/82">
-              <h2 className="font-display text-3xl text-foreground">Скоро здесь появятся новые встречи книжного клуба.</h2>
-            </Card>
-          )}
+          ) : null}
 
-          <div className="mt-12">
-            <SectionTitle
-              eyebrow="Анонсы"
-              title="Новости и анонсы клуба"
-              description="Короткие публикации о ближайших встречах, итогах и книжных поводах магазина."
-            />
-            {announcements.length ? (
-              <div className="mt-8 grid gap-4 lg:grid-cols-3">
-                {announcements.map((announcement) => (
-                  <AnnouncementCard key={announcement._id} announcement={announcement} />
-                ))}
-              </div>
-            ) : (
-              <Card className="mt-8 bg-panel/82">
-                <p className="text-sm leading-7 text-muted-foreground">Пока здесь нет опубликованных анонсов книжного клуба.</p>
-              </Card>
-            )}
-          </div>
+          {announcements.length ? (
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              {announcements.map((announcement) => (
+                <AnnouncementCard key={announcement._id} announcement={announcement} />
+              ))}
+            </div>
+          ) : null}
+
+          {!events.length && !announcements.length ? (
+            <Card className="mt-10 bg-panel/82">
+              <h2 className="font-display text-3xl text-foreground">Скоро здесь появятся ближайшие мероприятия клуба.</h2>
+            </Card>
+          ) : null}
         </Container>
       </main>
       <Footer />
