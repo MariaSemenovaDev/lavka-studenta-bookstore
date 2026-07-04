@@ -6,6 +6,26 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
 
+const storeMoments = [
+
+  {
+    title: "Уютно",
+    description: "Читаем с чашечкой кофе",
+  },
+  {
+    title: "Четко",
+    description: "Получаем оптовые заказы",
+  },
+  {
+    title: "Душевно",
+    description: "Проводим время с друзьями",
+  },
+  {
+    title: "Вдумчиво",
+    description: "Подбираем подарки",
+  },
+];
+
 const audienceItems = [
   {
     title: "Для школьников",
@@ -46,11 +66,19 @@ export function AudienceSection() {
 
         <div className="relative grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <Reveal>
-            <SectionTitle
-              eyebrow="Для кого"
-              title="Магазин, в котором легко понять, что искать именно вам."
-              description="Школа, занятия дома, работа педагога или учёба в вузе — коротко собрали основные сценарии."
-            />
+            <SectionTitle eyebrow="Для кого" title="Магазин, в котором" />
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {storeMoments.map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-panel border border-border/55 bg-[radial-gradient(circle_at_center,rgba(250,247,240,0.56)_0%,rgba(250,247,240,0.36)_55%,rgba(250,247,240,0.18)_100%)] px-4 py-4 shadow-[0_12px_26px_rgba(74,52,43,0.07)]"
+                >
+                  <p className="font-display text-2xl text-foreground">{item.title}</p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.description}</p>
+                </div>
+              ))}
+            </div>
           </Reveal>
 
           <div className="grid gap-4 sm:grid-cols-2">

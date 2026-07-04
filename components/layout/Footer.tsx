@@ -1,52 +1,48 @@
 import Link from "next/link";
-import { MapPinned, Phone } from "lucide-react";
 
 import { Container } from "@/components/ui/Container";
-import { ADDRESS, NAV_ITEMS, PRIMARY_PHONE, PRIMARY_TEL, STORE_NAME } from "@/lib/constants";
+import { ADDRESS, NAV_ITEMS, PRIMARY_PHONE, PRIMARY_TEL, STORE_NAME, TELEGRAM_LINK, VK_LINK } from "@/lib/constants";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/70 bg-panel">
-      <Container className="grid gap-10 py-10 lg:grid-cols-[1.25fr_0.85fr_0.9fr]">
-        <div className="max-w-md">
-          <p className="text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-muted-foreground">{STORE_NAME}</p>
-          <h2 className="mt-3 font-display text-3xl text-foreground">Книги, рекомендации и книжный клуб в одном месте.</h2>
-          <p className="mt-4 text-sm leading-7 text-muted-foreground">
-            На сайте можно посмотреть рекомендации магазина, события книжного клуба и перед визитом уточнить наличие, доставку и удобный способ
-            получения по телефону.
-          </p>
-        </div>
+    <footer className="border-t border-border/70 bg-panel/64">
+      <Container className="py-8 sm:py-10">
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
+          <div>
+            <p className="font-display text-2xl text-foreground">{STORE_NAME}</p>
+            <p className="mt-3 max-w-[34ch] text-sm leading-7 text-muted-foreground">
+              Книжный магазин в Новороссийске с учебной литературой, букинистикой, рецензиями и событиями книжного клуба.
+            </p>
+          </div>
 
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">Контакты</h3>
-          <ul className="mt-4 space-y-3 text-sm text-foreground">
-            <li>
-              <a
-                href={PRIMARY_TEL}
-                className="inline-flex items-center gap-3 transition hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
-              >
-                <Phone className="size-4 text-muted-foreground" />
+          <div>
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Навигация</p>
+            <div className="mt-4 flex flex-col gap-3">
+              {NAV_ITEMS.map((item) => (
+                <Link key={item.href} href={item.href} className="text-sm text-foreground transition hover:text-brand">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">Контакты</p>
+            <div className="mt-4 space-y-3 text-sm text-foreground">
+              <p>{ADDRESS}</p>
+              <a href={PRIMARY_TEL} className="inline-block transition hover:text-brand">
                 {PRIMARY_PHONE}
               </a>
-            </li>
-            <li className="inline-flex items-start gap-3 text-sm text-foreground">
-              <MapPinned className="mt-0.5 size-4 shrink-0 text-muted-foreground" />
-              <span>{ADDRESS}</span>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">Навигация</h3>
-          <ul className="mt-4 space-y-3 text-sm text-foreground">
-            {NAV_ITEMS.map((link) => (
-              <li key={link.href}>
-                <Link className="transition hover:text-brand focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand" href={link.href}>
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+              <div className="flex flex-wrap gap-4 text-muted-foreground">
+                <a href={TELEGRAM_LINK} target="_blank" rel="noreferrer" className="transition hover:text-brand">
+                  Telegram
+                </a>
+                <a href={VK_LINK} target="_blank" rel="noreferrer" className="transition hover:text-brand">
+                  ВКонтакте
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </footer>

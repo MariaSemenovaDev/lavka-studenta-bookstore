@@ -1,4 +1,4 @@
-import { BookOpen, GraduationCap, MapPin, ScrollText } from "lucide-react";
+import { BookOpen, GraduationCap, MapPin } from "lucide-react";
 
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
@@ -13,20 +13,25 @@ const features = [
     icon: GraduationCap,
   },
   {
-    title: "Для школы, детского сада и дома",
+    title: "Для детского сада и дома",
     description: "Есть книги для детей, внеклассное чтение, пособия и материалы для школьных и домашних занятий.",
     icon: BookOpen,
+  },
+  {
+    title: "Для любителей пыльных полок",
+    description: "Книги - долгожители, редкие издания, книги с судьбой",
+    icon: MapPin,
   },
   {
     title: "Один магазин, один адрес",
     description: `Магазин находится по адресу: ${ADDRESS}. Перед визитом можно позвонить и уточнить наличие нужной позиции.`,
     icon: MapPin,
   },
-  {
-    title: "Букинистика и книжные направления",
-    description: "Помимо учебной литературы, в магазине есть книги для детей, букинистические издания и книжные мероприятия.",
-    icon: ScrollText,
-  },
+  // {
+  //   title: "Букинистика и книжные направления",
+  //   description: "Помимо учебной литературы, в магазине есть книги для детей, букинистические издания и книжные мероприятия.",
+  //   icon: ScrollText,
+  // },
 ];
 
 export function AboutSection() {

@@ -1,37 +1,23 @@
-import { connection } from "next/server";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowLeft, BookOpenText, PenSquare, Phone } from "lucide-react";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Phone } from "lucide-react";
+import { connection } from "next/server";
 
 import { CmsImage } from "@/components/cms/CmsImage";
 import { PortableTextContent } from "@/components/cms/PortableTextContent";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
-import { ProductMockCover } from "@/components/catalog/ProductMockCover";
+import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { PRIMARY_TEL, STORE_NAME } from "@/lib/constants";
 import { getRecommendationBySlug } from "@/sanity/fetchers";
-import type { BookCategorySlug } from "@/types/book";
 
 type RecommendationDetailPageProps = {
   params: Promise<{ slug: string }>;
-};
-
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
-const categoryMap: Record<string, BookCategorySlug> = {
-  "Учебная книга": "textbooks",
-  "Методическая литература": "methodology",
-  "Наглядные пособия": "visual-aids",
-  "Книги для детей": "children-books",
-  "Внеклассное чтение": "extracurricular-reading",
-  "Букинистические издания": "used-books",
-  "Для книжного клуба": "events",
-  "Выбор магазина": "textbooks",
 };
 
 export async function generateMetadata({ params }: RecommendationDetailPageProps): Promise<Metadata> {
@@ -40,7 +26,7 @@ export async function generateMetadata({ params }: RecommendationDetailPageProps
 
   if (!recommendation) {
     return {
-      title: `Рекомендация не найдена — ${STORE_NAME}`,
+      title: `Рецензия не найдена — ${STORE_NAME}`,
     };
   }
 
@@ -50,6 +36,9 @@ export async function generateMetadata({ params }: RecommendationDetailPageProps
   return {
     title,
     description,
+    alternates: {
+      canonical: `/recommendations/${recommendation.slug}`,
+    },
     openGraph: {
       title,
       description,
@@ -57,6 +46,9 @@ export async function generateMetadata({ params }: RecommendationDetailPageProps
     },
   };
 }
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function RecommendationDetailPage({ params }: RecommendationDetailPageProps) {
   await connection();
@@ -68,8 +60,6 @@ export default async function RecommendationDetailPage({ params }: Recommendatio
     notFound();
   }
 
-  const mappedCategory = categoryMap[recommendation.category ?? ""] ?? "textbooks";
-
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -80,10 +70,10 @@ export default async function RecommendationDetailPage({ params }: Recommendatio
             className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             <ArrowLeft className="size-4" />
-            Назад к рекомендациям
+            Назад к рецензиям
           </Link>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
             <Card className="overflow-hidden bg-panel/90 p-0">
               <div className="relative aspect-[4/5] bg-secondary">
                 {recommendation.coverImage?.asset?._ref ? (
@@ -91,27 +81,38 @@ export default async function RecommendationDetailPage({ params }: Recommendatio
                     image={recommendation.coverImage}
                     alt={recommendation.title}
                     fill
-                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    sizes="(max-width: 1024px) 100vw, 42vw"
                     className="object-cover"
                   />
                 ) : (
-                  <ProductMockCover
-                    category={mappedCategory}
-                    title={recommendation.title}
-                    subtitle={recommendation.author || recommendation.shortDescription}
-                  />
+                  <div className="flex h-full items-center justify-center bg-[radial-gradient(circle_at_top,rgba(245,226,199,0.8),rgba(218,192,167,0.52)_45%,rgba(122,88,70,0.32)_100%)]">
+                    <span className="flex size-16 items-center justify-center rounded-full border border-white/30 bg-white/18 text-foreground">
+                      <BookOpenText className="size-7" />
+                    </span>
+                  </div>
                 )}
               </div>
             </Card>
 
             <div>
-              <h1 className="font-display text-5xl leading-none text-foreground">{recommendation.title}</h1>
-              {recommendation.author ? <p className="mt-4 text-lg text-foreground/78">{recommendation.author}</p> : null}
-              <div className="mt-5 flex flex-wrap gap-3 text-sm text-muted-foreground">
-                {recommendation.category ? <span className="rounded-full border border-border bg-panel px-4 py-2">{recommendation.category}</span> : null}
-                {recommendation.ageGroup ? <span className="rounded-full border border-border bg-panel px-4 py-2">{recommendation.ageGroup}</span> : null}
+              <div className="flex flex-wrap items-center gap-3">
+                {recommendation.category ? <Badge tone="accent">{recommendation.category}</Badge> : null}
+                {recommendation.ageGroup ? <Badge tone="muted">{recommendation.ageGroup}</Badge> : null}
               </div>
+
+              <h1 className="mt-5 font-display text-[2.8rem] leading-[0.96] text-foreground sm:text-[3.4rem]">
+                {recommendation.title}
+              </h1>
+
+              {recommendation.author ? (
+                <p className="mt-4 inline-flex items-center gap-2 text-base text-muted-foreground">
+                  <PenSquare className="size-4" />
+                  {recommendation.author}
+                </p>
+              ) : null}
+
               <p className="mt-5 text-base leading-8 text-muted-foreground">{recommendation.shortDescription}</p>
+
               <div className="mt-6">
                 <Button href={PRIMARY_TEL} size="lg">
                   <Phone className="size-4" />
@@ -121,27 +122,39 @@ export default async function RecommendationDetailPage({ params }: Recommendatio
             </div>
           </div>
 
-          {recommendation.description?.length ? (
-            <Card className="mt-10 space-y-5 bg-panel/82">
-              <PortableTextContent value={recommendation.description} />
-            </Card>
-          ) : null}
+          <div className="mt-10">
+            <PortableTextContent value={recommendation.description} />
+          </div>
 
           {recommendation.gallery?.length ? (
             <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {recommendation.gallery.map((image, index) => (
-                <Card key={`${recommendation._id}-gallery-${index}`} className="overflow-hidden bg-panel/90 p-0">
-                  <div className="relative aspect-[4/3] bg-secondary">
-                    <CmsImage
-                      image={image}
-                      alt={`${recommendation.title} — изображение ${index + 1}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className="object-cover"
-                    />
-                  </div>
-                </Card>
-              ))}
+              {recommendation.gallery.map((image, index) => {
+                const imageKey = image.asset?._ref ?? `gallery-${index}`;
+
+                return (
+                  <Card key={imageKey} className="overflow-hidden bg-panel/86 p-0">
+                    <div className="relative aspect-[4/3] bg-secondary">
+                      {image.asset?._ref ? (
+                        <CmsImage
+                          image={image}
+                          alt={`${recommendation.title} — изображение ${index + 1}`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover"
+                        />
+                      ) : (
+                        <Image
+                          src="/opengraph-image"
+                          alt=""
+                          fill
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                          className="object-cover opacity-0"
+                        />
+                      )}
+                    </div>
+                  </Card>
+                );
+              })}
             </div>
           ) : null}
         </Container>

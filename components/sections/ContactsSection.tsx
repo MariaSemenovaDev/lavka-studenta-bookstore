@@ -1,11 +1,23 @@
-import { Compass, ExternalLink, MapPinned, Phone, Truck } from "lucide-react";
+import { Compass, ExternalLink, MapPinned, MessageCircle, Phone, Send, Truck } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionTitle } from "@/components/ui/SectionTitle";
-import { FULL_ADDRESS, MAP_EMBED_URL, MAP_LINK, PRIMARY_PHONE, PRIMARY_TEL, STORE_NAME, WORKING_HOURS } from "@/lib/constants";
+import {
+  FULL_ADDRESS,
+  MAP_EMBED_URL,
+  MAX_LABEL,
+  PRIMARY_PHONE,
+  PRIMARY_TEL,
+  STORE_NAME,
+  TELEGRAM_LABEL,
+  TELEGRAM_LINK,
+  VK_LABEL,
+  VK_LINK,
+  WORKING_HOURS,
+} from "@/lib/constants";
 
 export function ContactsSection() {
   return (
@@ -16,7 +28,7 @@ export function ContactsSection() {
             <SectionTitle
               eyebrow="Контакты"
               title="Позвоните перед визитом, чтобы уточнить наличие нужного товара."
-              description="Финальный блок с адресом, телефоном, картой и короткой подсказкой по доставке."
+              description="Финальный блок с адресом, телефоном, соцсетями, картой и короткой подсказкой по доставке."
               className="max-w-xl"
             />
 
@@ -60,20 +72,45 @@ export function ContactsSection() {
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <a
+                  href={TELEGRAM_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 rounded-panel border border-border/70 bg-panel/78 px-4 py-3 text-sm text-foreground transition hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                >
+                  <Send className="size-4 text-muted-foreground" />
+                  <span>
+                    <span className="block text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">Telegram</span>
+                    <span className="mt-1 block">{TELEGRAM_LABEL}</span>
+                  </span>
+                </a>
+
+                <a
+                  href={VK_LINK}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 rounded-panel border border-border/70 bg-panel/78 px-4 py-3 text-sm text-foreground transition hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                >
+                  <ExternalLink className="size-4 text-muted-foreground" />
+                  <span>
+                    <span className="block text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">ВКонтакте</span>
+                    <span className="mt-1 block">{VK_LABEL}</span>
+                  </span>
+                </a>
+
+                <div className="inline-flex items-center gap-3 rounded-panel border border-border/70 bg-panel/62 px-4 py-3 text-sm text-foreground">
+                  <MessageCircle className="size-4 text-muted-foreground" />
+                  <span>
+                    <span className="block text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-muted-foreground">MAX</span>
+                    <span className="mt-1 block">{MAX_LABEL}</span>
+                  </span>
+                </div>
+
                 <Button href={PRIMARY_TEL} size="lg" className="justify-center">
                   <Phone className="size-4" />
                   Позвонить
                 </Button>
-                <a
-                  href={MAP_LINK}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border bg-panel px-6 text-sm font-medium text-foreground transition duration-200 ease-out hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                >
-                  Открыть в Яндекс.Картах
-                  <ExternalLink className="size-4" />
-                </a>
               </div>
             </Card>
           </Reveal>

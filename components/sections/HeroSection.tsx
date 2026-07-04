@@ -2,56 +2,66 @@ import { BookMarked, CalendarDays, MapPin, NotebookPen, ScrollText } from "lucid
 
 import { HeroShowcase } from "@/components/sections/HeroShowcase";
 import { TypewriterTitle } from "@/components/sections/TypewriterTitle";
-import { Reveal } from "@/components/ui/Reveal";
 import { Container } from "@/components/ui/Container";
-import { ADDRESS, STORE_NAME } from "@/lib/constants";
+import { Reveal } from "@/components/ui/Reveal";
+import { ADDRESS } from "@/lib/constants";
 
-const highlightItems = [
-  { label: "Учебная книга", icon: BookMarked },
-  { label: "Внеклассное чтение", icon: NotebookPen },
-  { label: "Букинистическая книга", icon: ScrollText },
+const quickTags = [
+  { label: "Учебная книга", icon: NotebookPen },
+  { label: "Внеклассное чтение", icon: BookMarked },
+  { label: "Букинистика", icon: ScrollText },
   { label: "Книжный клуб", icon: CalendarDays },
 ];
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden border-b border-border/60 bg-hero-gradient py-7 sm:py-10 lg:py-16">
-      <div className="hero-sheen pointer-events-none absolute inset-x-0 top-0 h-56" />
-      <div className="ambient-orb pointer-events-none absolute -left-10 top-20 size-44 rounded-full bg-accent/40" />
-      <div className="ambient-orb pointer-events-none absolute right-8 top-10 size-56 rounded-full bg-sage/34" />
-      <Container className="relative grid items-center gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:gap-14">
-        <Reveal className="max-w-2xl">
-          <h1 className="mt-3 max-w-[9ch] font-display text-5xl leading-[0.9] text-foreground sm:text-6xl lg:text-[5.2rem]">
-            <span className="lg:hidden">{STORE_NAME}</span>
-            <span className="hidden lg:inline-block">
-              <TypewriterTitle text={STORE_NAME} />
-            </span>
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-8 text-muted-foreground sm:text-lg">
-            Книги, учебники, методическая литература, наглядные пособия и букинистические издания в Новороссийске.
-            <br />
-            Рекомендации магазина, внеклассное чтение и анонсы книжного клуба — в одном месте.
-          </p>
-          <div className="mt-4 inline-flex flex-wrap items-center gap-2 rounded-full border border-border/70 bg-background/90 px-3 py-2 text-sm text-foreground shadow-card">
-            <MapPin className="size-4 text-brand" />
-            Новороссийск · {ADDRESS}
-          </div>
-          <div className="mt-8 grid grid-cols-2 gap-2 sm:max-w-xl">
-            {highlightItems.map(({ label, icon: Icon }) => (
-              <span
-                key={label}
-                className="inline-flex min-w-0 items-center justify-center gap-2 rounded-full border border-border/70 bg-paper/90 px-3 py-2 text-center text-sm text-foreground shadow-card"
-              >
-                <Icon className="size-4 text-brand" />
-                <span className="leading-5">{label}</span>
-              </span>
-            ))}
-          </div>
-        </Reveal>
+    <section className="relative overflow-hidden pb-10 pt-8 sm:pb-12 sm:pt-10 lg:pb-16 lg:pt-12">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="ambient-orb absolute left-[-6rem] top-[-3rem] h-56 w-56 bg-[radial-gradient(circle,rgba(196,141,96,0.28),rgba(196,141,96,0)_72%)] lg:h-72 lg:w-72" />
+        <div className="ambient-orb absolute right-[-5rem] top-10 h-52 w-52 bg-[radial-gradient(circle,rgba(122,88,70,0.18),rgba(122,88,70,0)_72%)] lg:h-64 lg:w-64" />
+      </div>
 
-        <Reveal delay={0.08}>
-          <HeroShowcase />
-        </Reveal>
+      <Container className="relative">
+        <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-center lg:gap-12">
+          <Reveal>
+            <div className="max-w-2xl">
+              <div className="hidden lg:block">
+                <TypewriterTitle text="Книжная Лавка Студента" className="font-display text-[4.4rem] leading-[0.94] text-foreground xl:text-[5rem]" />
+              </div>
+              <h1 className="font-display text-[3rem] leading-[0.96] text-foreground sm:text-[3.5rem] lg:hidden">
+                Книжная Лавка Студента
+              </h1>
+
+              <p className="mt-5 max-w-[34rem] text-lg leading-8 text-muted-foreground sm:text-xl sm:leading-9">
+                Книги, учебники, методическая литература, наглядные пособия и букинистические издания в Новороссийске.
+              </p>
+              <p className="mt-4 max-w-[36rem] text-base leading-8 text-muted-foreground sm:text-lg">
+                Рецензии магазина, внеклассное чтение и события книжного клуба — в одном месте.
+              </p>
+
+              <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-border/70 bg-panel/82 px-4 py-2 text-sm text-foreground">
+                <MapPin className="size-4 text-muted-foreground" />
+                <span>Новороссийск · {ADDRESS}</span>
+              </div>
+
+              <div className="mt-7 grid grid-cols-2 gap-3 sm:max-w-[34rem]">
+                {quickTags.map(({ label, icon: Icon }) => (
+                  <div
+                    key={label}
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-border/70 bg-panel/82 px-4 py-3 text-center text-sm text-foreground shadow-soft"
+                  >
+                    <Icon className="size-4 shrink-0 text-muted-foreground" />
+                    <span>{label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.08}>
+            <HeroShowcase />
+          </Reveal>
+        </div>
       </Container>
     </section>
   );

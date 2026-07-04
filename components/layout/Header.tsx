@@ -25,6 +25,7 @@ export function Header() {
               </span>
             </span>
           </Link>
+
           <nav aria-label="Основная навигация" className="hidden items-center gap-6 lg:flex">
             {NAV_ITEMS.map((item) => (
               <Link

@@ -13,13 +13,17 @@ import {
 import { sanityClient } from "@/sanity/client";
 import type { SanityEvent, SanityRecommendation } from "@/types/sanity";
 
-async function safeFetch<T>(query: string, params?: QueryParams): Promise<T | null> {
+type FetchMode = "live" | "cached";
+
+async function safeFetch<T>(query: string, params?: QueryParams, mode: FetchMode = "live"): Promise<T | null> {
   if (!sanityClient) {
     return null;
   }
 
   try {
-    noStore();
+    if (mode === "live") {
+      noStore();
+    }
     return await sanityClient.fetch<T>(query, params ?? {});
   } catch {
     return null;
@@ -46,8 +50,8 @@ export async function getFeaturedRecommendations() {
   return (await safeFetch<SanityRecommendation[]>(featuredRecommendationsQuery)) ?? [];
 }
 
-export async function getRecommendations() {
-  return (await safeFetch<SanityRecommendation[]>(recommendationsQuery)) ?? [];
+export async function getRecommendations(mode: FetchMode = "live") {
+  return (await safeFetch<SanityRecommendation[]>(recommendationsQuery, undefined, mode)) ?? [];
 }
 
 export async function getRecommendationBySlug(slug: string) {

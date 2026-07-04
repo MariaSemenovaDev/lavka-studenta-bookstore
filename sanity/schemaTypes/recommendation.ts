@@ -2,30 +2,30 @@ import { defineField, defineType } from "sanity";
 
 export const recommendationType = defineType({
   name: "recommendation",
-  title: "Рекомендация",
+  title: "Рецензия",
   type: "document",
   fields: [
     defineField({
       name: "title",
-      title: "Title",
+      title: "Название рецензии",
       type: "string",
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "slug",
-      title: "Slug",
+      title: "Адрес",
       type: "slug",
       options: { source: "title", maxLength: 96 },
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "author",
-      title: "Author",
+      title: "Автор книги",
       type: "string",
     }),
     defineField({
       name: "category",
-      title: "Category",
+      title: "Раздел",
       type: "string",
       options: {
         list: [
@@ -41,19 +41,19 @@ export const recommendationType = defineType({
     }),
     defineField({
       name: "shortDescription",
-      title: "Short description",
+      title: "Короткий анонс",
       type: "text",
       rows: 3,
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "description",
-      title: "Description",
+      title: "Текст рецензии",
       type: "blockContent",
     }),
     defineField({
       name: "coverImage",
-      title: "Обложка",
+      title: "Обложка или фото",
       type: "image",
       options: { hotspot: true },
     }),
@@ -65,18 +65,18 @@ export const recommendationType = defineType({
     }),
     defineField({
       name: "ageGroup",
-      title: "Age group",
+      title: "Для кого",
       type: "string",
     }),
     defineField({
       name: "isFeatured",
-      title: "Show on homepage",
+      title: "Показывать на главной",
       type: "boolean",
       initialValue: false,
     }),
     defineField({
       name: "publishedAt",
-      title: "Published at",
+      title: "Дата публикации",
       type: "datetime",
     }),
     defineField({
@@ -94,14 +94,14 @@ export const recommendationType = defineType({
   preview: {
     select: {
       title: "title",
-      subtitleAuthor: "author",
-      subtitleCategory: "category",
+      author: "author",
+      category: "category",
       media: "coverImage",
     },
-    prepare({ title, subtitleAuthor, subtitleCategory, media }) {
+    prepare({ title, author, category, media }) {
       return {
         title,
-        subtitle: subtitleAuthor || subtitleCategory,
+        subtitle: author || category,
         media,
       };
     },

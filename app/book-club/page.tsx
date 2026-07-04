@@ -35,6 +35,8 @@ const clubPhotos = [
   "https://sun9-71.userapi.com/s/v1/ig2/TVSfg0uK9wqIJVA1IN8BYy9jcbKbaEwXZrNvQohrvVYYjNZsNQOLLBgmj_pGM28ZJR8Y-IHgmwUIv69mWj_hE_sv.jpg?quality=95&as=32x69,48x104,72x156,108x234,160x347,240x520,360x780,480x1040,540x1170,591x1280&from=bu&cs=591x0",
   "https://sun9-24.userapi.com/s/v1/ig2/74K8Vjxkp-L1xpHqNIwEKq0R2baPO5mgTbUGYWXT-6BLzuJvNMr3Qr9OqBcGlrqNf74x6nUUUTbqWVTJwBpyGbHs.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1000x750&from=bu&cs=1000x0",
   "https://sun9-44.userapi.com/s/v1/ig2/yp3gcYCcZBDoJ0fxvG7PEIm9qBQwuMxhYxSWShr7nB9oJeE5vO0_upDZ3zxryTinkRC8ke3UZe19GISsq-jHQeu0.jpg?quality=95&as=32x69,48x104,72x156,108x234,160x347,240x520,360x780,480x1040,540x1170,591x1280&from=bu&cs=591x0",
+  "https://sun9-32.userapi.com/s/v1/ig2/0_mhPXchmJyaMKapZa2-DIowxQE6euOUlh2taGh0Fvs7ehu-xpNtI9485-t-FHfqxX7ySdLra024Js-ozcgAxIDJ.jpg?quality=95&as=32x26,48x39,72x58,108x88,160x130,240x195,360x292,480x390,540x438,640x520,720x584,797x647&from=bu&cs=797x0",
+  "https://sun9-79.userapi.com/s/v1/ig2/YLCoXtzZRa_jjR6hLkNZmnLpOH4ioB1QvL9-4Kb4LdXuurpO7cE3f6xIia8ro0j6qqfXxcFNOvoeaBvPG44H2i7f.jpg?quality=95&as=32x36,48x54,72x80,108x121,160x179,240x268,360x402,480x536,540x603,640x715,720x804,776x867&from=bu&cs=776x0",
 ];
 
 export default async function BookClubPage() {

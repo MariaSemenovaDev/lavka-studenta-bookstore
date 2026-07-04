@@ -1,5 +1,5 @@
-import { connection } from "next/server";
 import type { Metadata } from "next";
+import { connection } from "next/server";
 
 import { RecommendationCard } from "@/components/cms/RecommendationCard";
 import { Footer } from "@/components/layout/Footer";
@@ -37,20 +37,20 @@ export default async function RecommendationsPage() {
       <main id="content" className="py-14 sm:py-16 lg:py-20">
         <Container>
           <SectionTitle
-            eyebrow="Рекомендации"
-            title="Рекомендации магазина"
-            description="Книги и подборки, которые советует Книжная Лавка Студента."
+            eyebrow="Рецензии"
+            title="Рецензии магазина"
+            description="Книги, о которых в лавке хочется рассказать подробнее."
           />
 
           {recommendations.length ? (
-            <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            <div className="mt-10 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
               {recommendations.map((recommendation) => (
                 <RecommendationCard key={recommendation._id} recommendation={recommendation} />
               ))}
             </div>
           ) : (
             <Card className="mt-10 bg-panel/82">
-              <h2 className="font-display text-3xl text-foreground">Скоро здесь появятся рекомендации магазина.</h2>
+              <h2 className="font-display text-3xl text-foreground">Скоро здесь появятся рецензии магазина.</h2>
             </Card>
           )}
         </Container>

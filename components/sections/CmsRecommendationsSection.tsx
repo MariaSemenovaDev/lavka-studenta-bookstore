@@ -12,29 +12,31 @@ type CmsRecommendationsSectionProps = {
 };
 
 export function CmsRecommendationsSection({ recommendations }: CmsRecommendationsSectionProps) {
+  const items = recommendations.slice(0, 4);
+
   return (
-    <Section id="cms-recommendations">
+    <Section id="recommendations" className="bg-panel/35">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <SectionTitle
-          eyebrow="Рекомендации"
-          title="Рекомендации магазина"
-          description="Подборки и книги, на которые стоит обратить внимание."
+          eyebrow="Рецензии"
+          title="Рецензии магазина"
+          description="Заметки о книгах, на которые стоит обратить внимание."
         />
-        <Button href="/recommendations" variant="secondary">
-          Все рекомендации
+        <Button href="/recommendations" variant="secondary" className="transition duration-300 hover:-translate-y-0.5 hover:shadow-card">
+          Все рецензии
           <ArrowRight className="size-4" />
         </Button>
       </div>
 
-      {recommendations.length ? (
-        <div className="mt-10 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {recommendations.slice(0, 4).map((recommendation) => (
+      {items.length ? (
+        <div className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-4">
+          {items.map((recommendation) => (
             <RecommendationCard key={recommendation._id} recommendation={recommendation} />
           ))}
         </div>
       ) : (
-        <Card className="mt-10 bg-panel/82">
-          <h3 className="font-display text-3xl text-foreground">Скоро здесь появятся рекомендации магазина.</h3>
+        <Card className="mt-8 bg-panel/82">
+          <h3 className="font-display text-3xl text-foreground">Скоро здесь появятся рецензии магазина.</h3>
         </Card>
       )}
     </Section>

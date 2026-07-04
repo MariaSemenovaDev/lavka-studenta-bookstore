@@ -59,7 +59,7 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
           onClick={() => emblaApi?.scrollPrev()}
           disabled={!canScroll}
           aria-label="Предыдущее фото"
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/90 text-foreground transition hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
+          className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/90 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent hover:shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
         >
           <ChevronLeft className="size-4" />
         </button>
@@ -68,7 +68,7 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
           onClick={() => emblaApi?.scrollNext()}
           disabled={!canScroll}
           aria-label="Следующее фото"
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/90 text-foreground transition hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
+          className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/90 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent hover:shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
         >
           <ChevronRight className="size-4" />
         </button>
@@ -95,17 +95,25 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
               >
                 <div
                   className={cn(
-                    "relative overflow-hidden rounded-[1.75rem] shadow-[0_18px_38px_rgba(60,43,37,0.14)] transition duration-300 ease-out",
-                    isActive ? "scale-100 opacity-100" : "scale-[0.88] opacity-82",
+                    "group relative overflow-hidden rounded-[1.75rem] shadow-[0_18px_38px_rgba(60,43,37,0.14)] transition duration-300 ease-out",
+                    isActive ? "scale-100 opacity-100 shadow-[0_24px_46px_rgba(60,43,37,0.18)]" : "scale-[0.88] opacity-82",
                   )}
                 >
-                  <div className={cn("relative bg-secondary", isActive ? "aspect-[4/5]" : "aspect-[4/5]")}>
+                  <div className="relative aspect-[4/5] bg-secondary/55">
+                    <div
+                      className={cn(
+                        "pointer-events-none absolute inset-0 z-[1] transition duration-300",
+                        isActive
+                          ? "bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_48%)]"
+                          : "bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_52%)]",
+                      )}
+                    />
                     <Image
                       src={image}
                       alt={`${altPrefix} ${index + 1}`}
                       fill
                       sizes="(max-width: 768px) 74vw, (max-width: 1200px) 40vw, 32vw"
-                      className="object-cover"
+                      className={cn("object-contain transition duration-500 ease-out", isActive ? "scale-100" : "scale-[0.97]")}
                     />
                   </div>
                 </div>

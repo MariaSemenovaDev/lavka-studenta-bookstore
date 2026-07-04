@@ -74,6 +74,15 @@
   opacity: 0.9;
 }
 
+@utility page-ambient {
+  background:
+    radial-gradient(circle at 14% 16%, rgba(228, 188, 120, 0.2), transparent 28%),
+    radial-gradient(circle at 84% 12%, rgba(142, 77, 61, 0.16), transparent 30%),
+    radial-gradient(circle at 62% 40%, rgba(214, 163, 120, 0.14), transparent 34%),
+    linear-gradient(180deg, rgba(251, 246, 239, 0.58) 0%, rgba(246, 239, 230, 0.82) 48%, rgba(246, 239, 230, 0.96) 100%);
+  animation: page-ambient-shift 18s ease-in-out infinite alternate;
+}
+
 @utility trust-marquee {
   animation: trust-marquee 28s linear infinite;
   will-change: transform;
@@ -186,5 +195,17 @@
   49%,
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes page-ambient-shift {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+    filter: saturate(1);
+  }
+
+  100% {
+    transform: scale(1.03) translate3d(0, -1.5%, 0);
+    filter: saturate(1.04);
   }
 }
