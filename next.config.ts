@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   transpilePackages: ["sanity", "next-sanity", "swr"],
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

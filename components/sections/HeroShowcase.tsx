@@ -68,7 +68,6 @@ export function HeroShowcase() {
             <h3 className="font-display text-[1.8rem] leading-tight text-brand-foreground">Уточнить по телефону</h3>
             <p className="mt-3 text-sm leading-6 text-brand-foreground/82">Перед визитом можно уточнить наличие нужного товара</p>
             <Button href={PRIMARY_TEL} size="lg" className="mt-4 w-full justify-center">
-              <Phone className="size-4" />
               Позвонить
             </Button>
           </div>
