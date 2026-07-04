@@ -20,7 +20,7 @@ export function HeroShowcase() {
             category="textbooks"
             badgeLabel="Рецензии"
             title="Наши рецензии"
-            subtitle="Книги, о которых в лавке хочется рассказать подробнее."
+            subtitle="Книги, о которых хочется рассказать подробнее."
             showShortLabel={false}
             className="h-full"
           />
@@ -66,7 +66,7 @@ export function HeroShowcase() {
           </div>
           <div className="rounded-[1.15rem] border border-white/14 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.16)_0%,rgba(255,255,255,0.08)_50%,rgba(255,255,255,0.03)_100%)] px-4 py-3 text-brand-foreground backdrop-blur-[3px]">
             <h3 className="font-display text-[1.8rem] leading-tight text-brand-foreground">Уточнить по телефону</h3>
-            <p className="mt-3 text-sm leading-6 text-brand-foreground/82">Перед визитом можно уточнить наличие нужного товара.</p>
+            <p className="mt-3 text-sm leading-6 text-brand-foreground/82">Перед визитом можно уточнить наличие нужного товара</p>
             <Button href={PRIMARY_TEL} size="lg" className="mt-4 w-full justify-center">
               <Phone className="size-4" />
               Позвонить

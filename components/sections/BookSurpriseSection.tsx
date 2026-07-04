@@ -1,4 +1,4 @@
-import { Gift, Phone, Sparkles } from "lucide-react";
+import { Phone, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -52,7 +52,7 @@ export function BookSurpriseSection() {
             ].map((step, index) => (
               <div key={step} className="flex items-start gap-3 rounded-panel border border-border/60 bg-background/72 px-4 py-4">
                 <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
-                  {index === 0 ? <Gift className="size-4" /> : <span className="text-sm font-semibold">{index + 1}</span>}
+                  {index === 0 ? <span>1</span> : <span className="text-sm font-semibold">{index + 1}</span>}
                 </span>
                 <p className="text-sm leading-7 text-foreground">{step}</p>
               </div>

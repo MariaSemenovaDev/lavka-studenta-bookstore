@@ -27,8 +27,10 @@ export function CircularGallery({ images, altPrefix, className }: CircularGaller
     align: "center",
     containScroll: false,
     loop: true,
+    dragFree: false,
   });
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
   const canScroll = images.length > 1;
 
   const updateState = useCallback(() => {
@@ -37,12 +39,26 @@ export function CircularGallery({ images, altPrefix, className }: CircularGaller
   }, [emblaApi]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const media = window.matchMedia("(min-width: 1024px)");
+    const updateViewport = () => setIsDesktop(media.matches);
+
+    updateViewport();
+    media.addEventListener("change", updateViewport);
+
+    return () => media.removeEventListener("change", updateViewport);
+  }, []);
+
+  useEffect(() => {
     if (!emblaApi) return;
 
     emblaApi.on("select", updateState);
     emblaApi.on("reInit", updateState);
+    const frame = requestAnimationFrame(updateState);
 
     return () => {
+      cancelAnimationFrame(frame);
       emblaApi.off("select", updateState);
       emblaApi.off("reInit", updateState);
     };
@@ -51,6 +67,10 @@ export function CircularGallery({ images, altPrefix, className }: CircularGaller
   const transforms = useMemo(
     () =>
       images.map((_, index) => {
+        if (!isDesktop) {
+          return "translateY(0px) scale(1) rotateY(0deg)";
+        }
+
         const distance = getCircularDistance(index, selectedIndex, images.length);
         const absDistance = Math.abs(distance);
 
@@ -64,7 +84,7 @@ export function CircularGallery({ images, altPrefix, className }: CircularGaller
 
         return `translateY(46px) scale(0.68) rotateY(${distance > 0 ? "-36deg" : "36deg"})`;
       }),
-    [images, selectedIndex],
+    [images, isDesktop, selectedIndex],
   );
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -109,7 +129,7 @@ export function CircularGallery({ images, altPrefix, className }: CircularGaller
         onKeyDown={handleKeyDown}
         className="overflow-hidden"
       >
-        <div className="-ml-3 flex touch-pan-y items-start [perspective:1400px] md:-ml-4">
+        <div className="-ml-3 flex items-start select-none md:-ml-4">
           {images.map((image, index) => {
             const distance = getCircularDistance(index, selectedIndex, images.length);
             const absDistance = Math.abs(distance);
@@ -118,29 +138,36 @@ export function CircularGallery({ images, altPrefix, className }: CircularGaller
             return (
               <div
                 key={`${image}-${index}`}
-                className="min-w-0 shrink-0 grow-0 basis-[76%] pl-3 transition duration-500 ease-out md:basis-[42%] md:pl-4 lg:basis-[34%]"
+                className={cn(
+                  "min-w-0 shrink-0 grow-0 pl-3 md:pl-4",
+                  isDesktop ? "basis-[76%] md:basis-[42%] lg:basis-[34%]" : "basis-[84%] sm:basis-[62%]",
+                )}
               >
                 <div
                   className={cn(
-                    "group relative origin-center overflow-hidden rounded-[1.9rem] border border-white/28 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.28),rgba(255,255,255,0.04))] shadow-[0_18px_38px_rgba(60,43,37,0.14)] transition duration-500 ease-out",
-                    isActive ? "opacity-100 shadow-[0_30px_55px_rgba(60,43,37,0.22)]" : "opacity-65",
-                    absDistance > 1 && "opacity-35",
+                    "group relative origin-center overflow-hidden rounded-[1.9rem] bg-transparent transition duration-500 ease-out",
+                    isDesktop && isActive && "opacity-100 shadow-[0_30px_55px_rgba(60,43,37,0.22)]",
+                    isDesktop && !isActive && "opacity-65 shadow-[0_18px_38px_rgba(60,43,37,0.14)]",
+                    isDesktop && absDistance > 1 && "opacity-35",
+                    !isDesktop && "opacity-100 shadow-[0_16px_34px_rgba(60,43,37,0.16)]",
                   )}
                   style={{
                     transform: transforms[index],
-                    filter: isActive ? "none" : absDistance === 1 ? "saturate(0.92)" : "blur(1px) saturate(0.8)",
+                    filter: isDesktop ? (isActive ? "none" : absDistance === 1 ? "saturate(0.92)" : "blur(1px) saturate(0.8)") : "none",
                   }}
                 >
                   <div className="relative aspect-[4/5] bg-secondary/28">
-                    <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_46%)]" />
+                    {isDesktop ? (
+                      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.24),transparent_46%)]" />
+                    ) : null}
                     <Image
                       src={image}
                       alt={`${altPrefix} ${index + 1}`}
                       fill
-                      sizes="(max-width: 768px) 76vw, (max-width: 1200px) 42vw, 34vw"
+                      sizes={isDesktop ? "(max-width: 768px) 76vw, (max-width: 1200px) 42vw, 34vw" : "(max-width: 768px) 84vw, 62vw"}
                       className={cn(
                         "object-cover transition duration-500 ease-out",
-                        isActive ? "scale-100" : absDistance === 1 ? "scale-[0.96]" : "scale-[0.92]",
+                        isDesktop ? (isActive ? "scale-100" : absDistance === 1 ? "scale-[0.96]" : "scale-[0.92]") : "scale-100",
                       )}
                     />
                   </div>

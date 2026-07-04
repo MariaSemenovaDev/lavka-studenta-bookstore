@@ -39,7 +39,7 @@ export default async function RecommendationsPage() {
           <SectionTitle
             eyebrow="Рецензии"
             title="Рецензии магазина"
-            description="Книги, о которых в лавке хочется рассказать подробнее."
+            description="Книги, о которых хочется рассказать подробнее."
           />
 
           {recommendations.length ? (
