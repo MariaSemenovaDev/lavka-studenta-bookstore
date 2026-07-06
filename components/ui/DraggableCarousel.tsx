@@ -20,7 +20,7 @@ export function DraggableCarousel({
   className,
   viewportClassName,
   slideClassName,
-  hint = "Листайте",
+  hint = "",
   ariaLabel = "Прокручиваемая карусель",
 }: DraggableCarouselProps) {
   const slides = useMemo(() => Children.toArray(children), [children]);
@@ -64,14 +64,22 @@ export function DraggableCarousel({
     }
   };
 
+  const handlePrev = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const handleNext = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
   return (
     <div className={cn("relative", className)}>
       <div className="mb-4 flex items-center justify-between gap-3">
-        <p className="text-sm text-muted-foreground md:hidden">{hint}</p>
-        <div className="ml-auto hidden items-center gap-2 md:flex">
+        <p className="text-sm text-muted-foreground">{hint}</p>
+        <div className="ml-auto flex items-center gap-2">
           <button
             type="button"
-            onClick={() => emblaApi?.scrollPrev()}
+            onClick={handlePrev}
             disabled={!canScrollPrev}
             aria-label="Предыдущие карточки"
             className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-panel text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
@@ -80,7 +88,7 @@ export function DraggableCarousel({
           </button>
           <button
             type="button"
-            onClick={() => emblaApi?.scrollNext()}
+            onClick={handleNext}
             disabled={!canScrollNext}
             aria-label="Следующие карточки"
             className="inline-flex size-10 items-center justify-center rounded-full border border-border bg-panel text-foreground transition duration-200 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
@@ -97,7 +105,7 @@ export function DraggableCarousel({
           tabIndex={0}
           aria-label={ariaLabel}
           onKeyDown={handleKeyDown}
-          className={cn("overflow-hidden rounded-shell", viewportClassName)}
+          className={cn("cursor-grab overflow-hidden rounded-shell active:cursor-grabbing", viewportClassName)}
         >
           <div className="-ml-4 flex touch-pan-y">
             {slides.map((slide, index) => (

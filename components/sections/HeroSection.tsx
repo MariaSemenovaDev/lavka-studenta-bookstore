@@ -25,10 +25,13 @@ export function HeroSection() {
         <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-center lg:gap-12">
           <Reveal>
             <div className="max-w-2xl">
-              <div className="hidden lg:block">
+              <div className="hidden lg:block ipad-hide-typewriter">
                 <TypewriterTitle text="Книжная Лавка Студента" className="font-display text-[4.4rem] leading-[0.94] text-foreground xl:text-[5rem]" />
               </div>
               <h1 className="font-display text-[3rem] leading-[0.96] text-foreground sm:text-[3.5rem] lg:hidden">
+                Книжная Лавка Студента
+              </h1>
+              <h1 className="ipad-static-title hidden font-display text-[4.4rem] leading-[0.94] text-foreground xl:text-[5rem]">
                 Книжная Лавка Студента
               </h1>
 

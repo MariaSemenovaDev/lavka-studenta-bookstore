@@ -51,12 +51,20 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
     }
   };
 
+  const handlePrev = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const handleNext = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
   return (
     <div className={cn("relative", className)}>
       <div className="mb-4 flex items-center justify-end gap-2">
         <button
           type="button"
-          onClick={() => emblaApi?.scrollPrev()}
+          onClick={handlePrev}
           disabled={!canScroll}
           aria-label="Предыдущее фото"
           className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/90 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent hover:shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
@@ -65,7 +73,7 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
         </button>
         <button
           type="button"
-          onClick={() => emblaApi?.scrollNext()}
+          onClick={handleNext}
           disabled={!canScroll}
           aria-label="Следующее фото"
           className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/90 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent hover:shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
@@ -79,7 +87,7 @@ export function ImageGalleryCarousel({ images, altPrefix, className }: ImageGall
         tabIndex={0}
         aria-label="Галерея фотографий книжного клуба"
         onKeyDown={handleKeyDown}
-        className="overflow-hidden"
+        className="cursor-grab overflow-hidden active:cursor-grabbing"
       >
         <div className="-ml-3 flex touch-pan-y items-center md:-ml-4">
           {images.map((image, index) => {

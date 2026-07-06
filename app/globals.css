@@ -176,6 +176,20 @@
   }
 }
 
+.ipad-static-title {
+  display: none;
+}
+
+@media only screen and (min-width: 820px) and (max-width: 1366px) and (hover: none) and (pointer: coarse) {
+  .ipad-hide-typewriter {
+    display: none;
+  }
+
+  .ipad-static-title {
+    display: block;
+  }
+}
+
 @keyframes trust-marquee {
   from {
     transform: translateX(0);

@@ -99,27 +99,38 @@ export function CircularGallery({ images, altPrefix, className }: CircularGaller
     }
   };
 
+  const handlePrev = useCallback(() => {
+    emblaApi?.scrollPrev();
+  }, [emblaApi]);
+
+  const handleNext = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
+
   return (
     <div className={cn("relative", className)}>
-      <div className="mb-5 flex items-center justify-end gap-2">
-        <button
-          type="button"
-          onClick={() => emblaApi?.scrollPrev()}
-          disabled={!canScroll}
-          aria-label="Предыдущее фото"
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/92 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent hover:shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
-        >
-          <ChevronLeft className="size-4" />
-        </button>
-        <button
-          type="button"
-          onClick={() => emblaApi?.scrollNext()}
-          disabled={!canScroll}
-          aria-label="Следующее фото"
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/92 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent hover:shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
-        >
-          <ChevronRight className="size-4" />
-        </button>
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <p className="text-sm text-muted-foreground"> </p>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handlePrev}
+            disabled={!canScroll}
+            aria-label="Предыдущее фото"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/92 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent hover:shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
+          >
+            <ChevronLeft className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={handleNext}
+            disabled={!canScroll}
+            aria-label="Следующее фото"
+            className="inline-flex size-10 items-center justify-center rounded-full border border-border/70 bg-panel/92 text-foreground transition duration-300 hover:-translate-y-0.5 hover:border-brand/40 hover:bg-accent hover:shadow-card focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:cursor-not-allowed disabled:opacity-45"
+          >
+            <ChevronRight className="size-4" />
+          </button>
+        </div>
       </div>
 
       <div
@@ -127,9 +138,9 @@ export function CircularGallery({ images, altPrefix, className }: CircularGaller
         tabIndex={0}
         aria-label="Галерея фотографий"
         onKeyDown={handleKeyDown}
-        className="overflow-hidden"
+        className="cursor-grab overflow-hidden active:cursor-grabbing"
       >
-        <div className="-ml-3 flex items-start select-none md:-ml-4">
+        <div className="-ml-3 flex touch-pan-y items-start select-none md:-ml-4">
           {images.map((image, index) => {
             const distance = getCircularDistance(index, selectedIndex, images.length);
             const absDistance = Math.abs(distance);

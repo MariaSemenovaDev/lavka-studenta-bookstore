@@ -63,7 +63,7 @@ export default async function BookClubPage() {
           </Card>
 
           <div className="mt-8">
-            <DraggableCarousel ariaLabel="Фотографии книжного клуба" hint="Листайте фотографии клуба">
+            <DraggableCarousel ariaLabel="Фотографии книжного клуба">
               {clubPhotos.map((photo, index) => (
                 <Card key={photo} className="overflow-hidden bg-panel/88 p-0">
                   <div className="relative aspect-[4/5] bg-secondary">
