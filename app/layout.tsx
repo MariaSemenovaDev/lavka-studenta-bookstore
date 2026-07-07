@@ -17,7 +17,9 @@ const displayFont = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://bookstore-student.vercel.app"),
+  metadataBase: new URL(
+      process.env.NEXT_PUBLIC_SITE_URL ?? "https://lavka-studenta-bookstore.ru"
+  ),
   title: HOME_METADATA.title,
   description: HOME_METADATA.description,
   applicationName: STORE_NAME,
