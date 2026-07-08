@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { PRIMARY_TEL, STORE_NAME } from "@/lib/constants";
+import { getSeoDescription } from "@/lib/seo";
 import { getRecommendationBySlug } from "@/sanity/fetchers";
 
 type RecommendationDetailPageProps = {
@@ -30,8 +31,12 @@ export async function generateMetadata({ params }: RecommendationDetailPageProps
     };
   }
 
-  const title = recommendation.seoTitle || `${recommendation.title} — ${STORE_NAME}`;
-  const description = recommendation.seoDescription || recommendation.shortDescription;
+  const title = recommendation.seoTitle || recommendation.title;
+  const description = getSeoDescription(
+    recommendation.seoDescription,
+    recommendation.shortDescription,
+    recommendation.description,
+  );
 
   return {
     title,
@@ -70,7 +75,7 @@ export default async function RecommendationDetailPage({ params }: Recommendatio
             className="inline-flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
           >
             <ArrowLeft className="size-4" />
-            Назад к рецензиям
+            Назад к рекомендациям
           </Link>
 
           <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
