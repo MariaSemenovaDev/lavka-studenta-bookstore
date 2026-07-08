@@ -1,8 +1,8 @@
-import { connection } from "next/server";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, MapPin, Phone } from "lucide-react";
+import { notFound } from "next/navigation";
+import { connection } from "next/server";
 
 import { CmsImage } from "@/components/cms/CmsImage";
 import { PortableTextContent } from "@/components/cms/PortableTextContent";
@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { FULL_ADDRESS, PRIMARY_TEL, STORE_NAME } from "@/lib/constants";
+import { getSeoDescription } from "@/lib/seo";
 import { getEventBySlug } from "@/sanity/fetchers";
 
 type EventDetailPageProps = {
@@ -41,12 +42,15 @@ export async function generateMetadata({ params }: EventDetailPageProps): Promis
     };
   }
 
-  const title = event.seoTitle || `${event.title} — ${STORE_NAME}`;
-  const description = event.seoDescription || event.shortDescription;
+  const title = event.seoTitle || event.title;
+  const description = getSeoDescription(event.seoDescription, event.shortDescription, event.description);
 
   return {
     title,
     description,
+    alternates: {
+      canonical: `/book-club/${event.slug}`,
+    },
     openGraph: {
       title,
       description,

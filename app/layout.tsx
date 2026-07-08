@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Manrope } from "next/font/google";
 
-import { HOME_METADATA, STORE_NAME } from "@/lib/constants";
+import { SITE_URL, STORE_NAME } from "@/lib/constants";
 
 import "./globals.css";
 
@@ -17,21 +17,24 @@ const displayFont = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL ?? "https://lavka-studenta-bookstore.ru"
-  ),
-  title: HOME_METADATA.title,
-  description: HOME_METADATA.description,
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Книжная Лавка Студента — книжный магазин в Новороссийске",
+    template: "%s | Книжная Лавка Студента",
+  },
+  description:
+    "Книжный магазин в Новороссийске: учебная книга, внеклассное чтение, методическая литература, наглядные пособия, букинистика, рекомендации магазина и книжный клуб.",
   applicationName: STORE_NAME,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: HOME_METADATA.title,
-    description: HOME_METADATA.description,
+    title: "Книжная Лавка Студента",
+    description: "Книги, учебники, рекомендации магазина и книжный клуб в Новороссийске.",
+    url: SITE_URL,
     locale: "ru_RU",
     type: "website",
-    siteName: STORE_NAME,
+    siteName: "Книжная Лавка Студента",
     images: [
       {
         url: "/opengraph-image",
@@ -41,10 +44,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
   twitter: {
     card: "summary_large_image",
-    title: HOME_METADATA.title,
-    description: HOME_METADATA.description,
+    title: "Книжная Лавка Студента",
+    description: "Книги, учебники, рекомендации магазина и книжный клуб в Новороссийске.",
     images: ["/opengraph-image"],
   },
 };

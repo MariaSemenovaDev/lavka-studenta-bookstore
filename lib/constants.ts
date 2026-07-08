@@ -1,10 +1,12 @@
 export const STORE_NAME = "Книжная Лавка Студента";
+export const SITE_URL = "https://lavka-studenta-bookstore.ru";
 export const CITY = "Новороссийск";
 export const ADDRESS = "ул. Революции 1905 г., д. 21";
 export const FULL_ADDRESS = `${CITY}, ${ADDRESS}`;
 
-export const PRIMARY_PHONE = "8 8617 306420";
+export const PRIMARY_PHONE = "8 (8617) 306-420";
 export const PRIMARY_TEL = "tel:+78617306420";
+export const PRIMARY_PHONE_SCHEMA = "+78617306420";
 export const CONTACT_LINK = PRIMARY_TEL;
 
 export const TELEGRAM_LABEL = "@lavkastudentanvrs";
@@ -28,9 +30,9 @@ export const NAV_ITEMS = [
 ] as const;
 
 export const HOME_METADATA = {
-  title: "Книжная Лавка Студента — книги, учебники и букинистические издания в Новороссийске",
+  title: "Книжная Лавка Студента — книжный магазин в Новороссийске",
   description:
-    "Книжный магазин в Новороссийске: учебники, методическая литература, наглядные пособия, книги для детей, внеклассное чтение, букинистические издания, рецензии и события книжного клуба.",
+    "Книжный магазин в Новороссийске: учебная книга, внеклассное чтение, методическая литература, наглядные пособия, букинистика, рекомендации магазина и книжный клуб.",
 } as const;
 
 export const CATALOG_METADATA = {
@@ -40,11 +42,13 @@ export const CATALOG_METADATA = {
 } as const;
 
 export const BOOK_CLUB_METADATA = {
-  title: "Книжный клуб — Книжная Лавка Студента",
-  description: "Встречи и мероприятия книжного клуба в Книжной Лавке Студента в Новороссийске.",
+  title: "Книжный клуб в Новороссийске",
+  description:
+    "Встречи книжного клуба в Книжной Лавке Студента: обсуждения книг, литературные события и спокойные встречи для читателей в Новороссийске.",
 } as const;
 
 export const RECOMMENDATIONS_METADATA = {
-  title: "Рецензии — Книжная Лавка Студента",
-  description: "Рецензии, заметки о книгах и выбор Книжной Лавки Студента.",
+  title: "Рекомендации книг",
+  description:
+    "Подборки и рекомендации книг от Книжной Лавки Студента: классика, учебная литература, книги для детей, подростков и взрослых читателей.",
 } as const;
